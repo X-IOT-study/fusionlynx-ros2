@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="fusionlynx_wheels" params="base_link wheel_radius wheel_width front_left_xyz front_right_xyz back_left_xyz back_right_xyz front_left_mesh front_right_mesh back_left_mesh back_right_mesh">
+    <xacro:property name="wheel_rpy" value="1.57079632679 0 0"/>
+
+    <xacro:macro name="wheel_link" params="name xyz mesh_file">
+      <link name="${name}">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="${mesh_file}"/>
+          </geometry>
+          <material name="rubber_black"/>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+          </geometry>
+        </collision>
+      </link>
+      <joint name="${base_link}_to_${name}" type="continuous">
+        <parent link="${base_link}"/>
+        <child link="${name}"/>
+        <origin xyz="${xyz}" rpy="${wheel_rpy}"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="100" velocity="1"/>
+      </joint>
+    </xacro:macro>
+
+    <xacro:wheel_link name="wheel_fl_link" xyz="${front_left_xyz}" mesh_file="${front_left_mesh}"/>
+    <xacro:wheel_link name="wheel_fr_link" xyz="${front_right_xyz}" mesh_file="${front_right_mesh}"/>
+    <xacro:wheel_link name="wheel_rl_link" xyz="${back_left_xyz}" mesh_file="${back_left_mesh}"/>
+    <xacro:wheel_link name="wheel_rr_link" xyz="${back_right_xyz}" mesh_file="${back_right_mesh}"/>
+  </xacro:macro>
+</robot>

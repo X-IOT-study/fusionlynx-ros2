@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>fusionlynx_bringup</name>
+  <version>0.1.0</version>
+  <description>FusionLynx PC-side system bringup.</description>
+  <maintainer email="wensheng.xu@example.com">WenSheng Xu</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>fusionlynx_description</exec_depend>
+  <exec_depend>fusionlynx_slam</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -1,0 +1,1 @@
+run_id,experiment_id,fusion_profile,chain,scene,repeat_index,parameter_version,date,start_time,end_time,requested_duration_s,recorded_duration_s,operator,robot_id,location,firmware_version,sdk_version,ros_distro,rmw_implementation,host_name,pi_host,pc_host,time_sync_method,config_file,launch_command,bag_path,status,notes

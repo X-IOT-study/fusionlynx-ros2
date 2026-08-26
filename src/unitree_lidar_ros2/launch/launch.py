@@ -2,6 +2,8 @@ import os
 import subprocess
 
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 # -----------------------------------------------------------------------------
@@ -16,6 +18,8 @@ from launch_ros.actions import Node
 # -----------------------------------------------------------------------------
 
 def generate_launch_description():
+    publish_tf = LaunchConfiguration('publish_tf')
+
     # Run unitree lidar
     node1 = Node(
         package='unitree_lidar_ros2',
@@ -24,9 +28,16 @@ def generate_launch_description():
         output='screen',
         parameters= [
                 
-                {'initialize_type': 1},             # 1: 初始化串口，2: 初始化网口
-                {'work_mode': 8},                
+                {'initialize_type': 2},             # 1: 初始化串口，2: 初始化网口
+                {'work_mode': 0},                   # 8: 串口模式，0: 网口模式
                 {'use_system_timestamp': True},
+                # Modified: 2026-08-20, WenSheng Xu.
+                # FusionLynx publishes the canonical lidar_link ->
+                # unilidar_lidar identity transform.  Disable the driver's
+                # diagnostic TF chain to avoid a second parent for the same
+                # physical lidar frame.  Set true only for standalone driver
+                # visualization without fusionlynx_description.
+                {'publish_tf': publish_tf},
                 {'range_min': 0.0},
                 {'range_max': 100.0},
                 {'cloud_scan_num': 18},
@@ -57,4 +68,15 @@ def generate_launch_description():
         arguments=['-d', rviz_config_file],
         output='log'
     )
-    return LaunchDescription([node1, rviz_node])
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'publish_tf',
+            default_value='false',
+            description=(
+                'Publish the standalone UniLidar diagnostic TF chain. '
+                'Keep false when fusionlynx_description is running.'
+            ),
+        ),
+        node1,
+        rviz_node,
+    ])

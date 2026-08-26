@@ -1,0 +1,163 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.log
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Build directories
+out/
+install/
+cmake-build/
+build/
+__pycache__/
+.pytest_cache/
+.venv/
+demo-test/
+demo.csv
+python/demo.csv
+dist/
+python/dist/
+python/motioncore.egg-info/
+
+# CMake artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+
+# IDE files
+.idea/
+.vscode/
+.codegraph/
+.codex/
+.claude/
+.agents/
+
+# Design files
+design/
+CLAUDE*
+TASKS.md
+
+*.tar.gz
+
+#test data
+demo*
+message.txt
+
+# ---------------------------------------------------------------------------
+# FusionLynx ROS 2 workspace policy
+# ---------------------------------------------------------------------------
+
+# Colcon and ROS 2 generated state.
+/.colcon/
+/build/
+/install/
+/log/
+**/log/
+**/build/
+**/install/
+
+# Local IDE, code-index, agent, and editor state.
+/.idea/
+/.vscode/
+**/.vscode/
+**/.marscode/
+/.codegraph/
+/.codex/
+/.agents/
+/.claude/
+/.literature_queue/
+*.swp
+*.swo
+
+# Local research-paper extraction and temporary MinerU pipeline output.
+/.mineru_output/
+
+# Raw experiment artifacts. Keep manifests and small human-written metadata
+# under version control; keep bags, clouds, maps, and databases outside Git.
+/data/*
+!/data/README.md
+!/data/manifests/
+!/data/manifests/**
+*.bag
+*.bag.active
+*.db
+*.db3
+*.sqlite
+*.sqlite3
+*.mcap
+*.pcd
+*.ply
+*.cam
+
+# Generated TF graphs and temporary stress/debug files.
+/frames_*.gv
+/frames_*.pdf
+/tmp/
+tmp_*
+
+# LaTeX and other generated paper build products.
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.out
+
+# The current workspace has no Node package at these roots. Do not commit
+# editor/tool-generated lock files here.
+/package-lock.json
+/src/package-lock.json

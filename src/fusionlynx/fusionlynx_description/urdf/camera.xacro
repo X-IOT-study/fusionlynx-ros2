@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="fusionlynx_camera" params="base_link camera_link camera_xyz camera_rpy camera_mesh">
+    <link name="${camera_link}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${camera_mesh}"/>
+        </geometry>
+        <material name="matte_black"/>
+      </visual>
+    </link>
+    <joint name="${base_link}_to_${camera_link}" type="fixed">
+      <parent link="${base_link}"/>
+      <child link="${camera_link}"/>
+      <origin xyz="${camera_xyz}" rpy="${camera_rpy}"/>
+    </joint>
+  </xacro:macro>
+</robot>

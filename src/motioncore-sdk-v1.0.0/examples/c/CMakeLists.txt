@@ -1,0 +1,2 @@
+add_executable(motioncore_c_example main.c)
+target_link_libraries(motioncore_c_example PRIVATE MotionCore::motioncore_c)

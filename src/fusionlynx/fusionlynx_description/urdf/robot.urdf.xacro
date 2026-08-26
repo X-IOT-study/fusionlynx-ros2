@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<robot name="fusionlynx" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="materials.xacro"/>
+  <xacro:include filename="base.xacro"/>
+  <xacro:include filename="wheels.xacro"/>
+  <xacro:include filename="lidar.xacro"/>
+  <xacro:include filename="camera.xacro"/>
+
+  <xacro:arg name="robot_name" default="fusionlynx"/>
+  <xacro:arg name="base_link" default="base_link"/>
+  <xacro:arg name="imu_link" default="imu_link"/>
+  <xacro:arg name="mag_link" default="mag_link"/>
+  <xacro:arg name="body_link" default="body"/>
+  <xacro:arg name="lidar_link" default="lidar_link"/>
+  <xacro:arg name="camera_link" default="camera_link"/>
+  <xacro:arg name="base_mesh" default="package://fusionlynx_description/meshes/mecanum/base_link.STL"/>
+  <xacro:arg name="front_left_wheel_mesh" default="package://fusionlynx_description/meshes/mecanum/front_left_wheel.STL"/>
+  <xacro:arg name="front_right_wheel_mesh" default="package://fusionlynx_description/meshes/mecanum/front_right_wheel.STL"/>
+  <xacro:arg name="back_left_wheel_mesh" default="package://fusionlynx_description/meshes/mecanum/back_left_wheel.STL"/>
+  <xacro:arg name="back_right_wheel_mesh" default="package://fusionlynx_description/meshes/mecanum/back_right_wheel.STL"/>
+  <xacro:arg name="lidar_mesh" default="package://fusionlynx_description/meshes/sensor/L2_Link.STL"/>
+  <xacro:arg name="camera_mesh" default="package://fusionlynx_description/meshes/sensor/Camera_Link.STL"/>
+
+  <xacro:arg name="base_length" default="0.52"/>
+  <xacro:arg name="base_width" default="0.42"/>
+  <xacro:arg name="base_height" default="0.18"/>
+  <xacro:arg name="wheel_radius" default="0.055"/>
+  <xacro:arg name="wheel_width" default="0.03"/>
+  <xacro:arg name="wheel_base" default="0.2141"/>
+  <xacro:arg name="track_width" default="0.2141"/>
+  <xacro:arg name="wheel_fl_xyz" default="0.11 0.1035 -0.043073"/>
+  <xacro:arg name="wheel_fr_xyz" default="0.11 -0.1035 -0.043073"/>
+  <xacro:arg name="wheel_rl_xyz" default="-0.11 0.1035 -0.039499"/>
+  <xacro:arg name="wheel_rr_xyz" default="-0.11 -0.1035 -0.039499"/>
+
+  <xacro:arg name="imu_xyz" default="0.006176 0.0125 0.023"/>
+  <xacro:arg name="imu_rpy" default="0 0 -1.5707963"/>
+  <xacro:arg name="mag_xyz" default="0.006176 0.0125 0.023"/>
+  <xacro:arg name="mag_rpy" default="-3.1415926 0 -1.5707963"/>
+  <xacro:arg name="body_xyz" default="0.018482107 -0.012812206 0.12667"/>
+  <xacro:arg name="body_rpy" default="0 0 1.16937"/>
+  <xacro:arg name="lidar_xyz" default="0.008 0 0.12"/>
+  <xacro:arg name="lidar_rpy" default="0 0 1.16937"/>
+  <xacro:arg name="camera_xyz" default="0.145 0 0.06"/>
+  <xacro:arg name="camera_rpy" default="0 0 0"/>
+
+  <xacro:property name="robot_name" value="$(arg robot_name)"/>
+  <xacro:property name="base_link" value="$(arg base_link)"/>
+  <xacro:property name="imu_link" value="$(arg imu_link)"/>
+  <xacro:property name="mag_link" value="$(arg mag_link)"/>
+  <xacro:property name="body_link" value="$(arg body_link)"/>
+  <xacro:property name="lidar_link" value="$(arg lidar_link)"/>
+  <xacro:property name="camera_link" value="$(arg camera_link)"/>
+  <xacro:property name="base_mesh" value="$(arg base_mesh)"/>
+  <xacro:property name="front_left_wheel_mesh" value="$(arg front_left_wheel_mesh)"/>
+  <xacro:property name="front_right_wheel_mesh" value="$(arg front_right_wheel_mesh)"/>
+  <xacro:property name="back_left_wheel_mesh" value="$(arg back_left_wheel_mesh)"/>
+  <xacro:property name="back_right_wheel_mesh" value="$(arg back_right_wheel_mesh)"/>
+  <xacro:property name="lidar_mesh" value="$(arg lidar_mesh)"/>
+  <xacro:property name="camera_mesh" value="$(arg camera_mesh)"/>
+
+  <xacro:property name="base_length" value="$(arg base_length)"/>
+  <xacro:property name="base_width" value="$(arg base_width)"/>
+  <xacro:property name="base_height" value="$(arg base_height)"/>
+  <xacro:property name="wheel_radius" value="$(arg wheel_radius)"/>
+  <xacro:property name="wheel_width" value="$(arg wheel_width)"/>
+  <xacro:property name="wheel_base" value="$(arg wheel_base)"/>
+  <xacro:property name="track_width" value="$(arg track_width)"/>
+  <xacro:property name="wheel_fl_xyz" value="$(arg wheel_fl_xyz)"/>
+  <xacro:property name="wheel_fr_xyz" value="$(arg wheel_fr_xyz)"/>
+  <xacro:property name="wheel_rl_xyz" value="$(arg wheel_rl_xyz)"/>
+  <xacro:property name="wheel_rr_xyz" value="$(arg wheel_rr_xyz)"/>
+
+  <xacro:property name="imu_xyz" value="$(arg imu_xyz)"/>
+  <xacro:property name="imu_rpy" value="$(arg imu_rpy)"/>
+  <xacro:property name="mag_xyz" value="$(arg mag_xyz)"/>
+  <xacro:property name="mag_rpy" value="$(arg mag_rpy)"/>
+  <xacro:property name="body_xyz" value="$(arg body_xyz)"/>
+  <xacro:property name="body_rpy" value="$(arg body_rpy)"/>
+  <xacro:property name="lidar_xyz" value="$(arg lidar_xyz)"/>
+  <xacro:property name="lidar_rpy" value="$(arg lidar_rpy)"/>
+  <xacro:property name="camera_xyz" value="$(arg camera_xyz)"/>
+  <xacro:property name="camera_rpy" value="$(arg camera_rpy)"/>
+
+  <xacro:fusionlynx_materials/>
+  <xacro:fusionlynx_base
+    base_link="${base_link}"
+    imu_link="${imu_link}"
+    mag_link="${mag_link}"
+    body_link="${body_link}"
+    base_length="${base_length}"
+    base_width="${base_width}"
+    base_height="${base_height}"
+    imu_xyz="${imu_xyz}"
+    imu_rpy="${imu_rpy}"
+    mag_xyz="${mag_xyz}"
+    mag_rpy="${mag_rpy}"
+    body_xyz="${body_xyz}"
+    body_rpy="${body_rpy}"
+    base_mesh="${base_mesh}"/>
+  <xacro:fusionlynx_wheels
+    base_link="${base_link}"
+    wheel_radius="${wheel_radius}"
+    wheel_width="${wheel_width}"
+    front_left_xyz="${wheel_fl_xyz}"
+    front_right_xyz="${wheel_fr_xyz}"
+    back_left_xyz="${wheel_rl_xyz}"
+    back_right_xyz="${wheel_rr_xyz}"
+    front_left_mesh="${front_left_wheel_mesh}"
+    front_right_mesh="${front_right_wheel_mesh}"
+    back_left_mesh="${back_left_wheel_mesh}"
+    back_right_mesh="${back_right_wheel_mesh}"/>
+  <xacro:fusionlynx_lidar
+    base_link="${base_link}"
+    lidar_link="${lidar_link}"
+    lidar_xyz="${lidar_xyz}"
+    lidar_rpy="${lidar_rpy}"
+    lidar_mesh="${lidar_mesh}"/>
+  <xacro:fusionlynx_camera
+    base_link="${base_link}"
+    camera_link="${camera_link}"
+    camera_xyz="${camera_xyz}"
+    camera_rpy="${camera_rpy}"
+    camera_mesh="${camera_mesh}"/>
+</robot>

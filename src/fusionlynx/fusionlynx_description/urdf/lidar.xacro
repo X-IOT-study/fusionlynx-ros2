@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="fusionlynx_lidar" params="base_link lidar_link lidar_xyz lidar_rpy lidar_mesh">
+    <link name="${lidar_link}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${lidar_mesh}"/>
+        </geometry>
+        <material name="gloss_black"/>
+      </visual>
+    </link>
+    <joint name="${base_link}_to_${lidar_link}" type="fixed">
+      <parent link="${base_link}"/>
+      <child link="${lidar_link}"/>
+      <origin xyz="${lidar_xyz}" rpy="${lidar_rpy}"/>
+    </joint>
+  </xacro:macro>
+</robot>

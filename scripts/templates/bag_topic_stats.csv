@@ -1,0 +1,1 @@
+run_id,bag_path,topic,msgtype,frame_id,child_frame_id,header_coverage,connections,messages,duration_s,avg_hz,min_gap_s,max_gap_s,mean_gap_s,p95_gap_s,std_gap_s,bag_minus_header_mean_ms,bag_minus_header_min_ms,bag_minus_header_max_ms,bag_minus_header_p95_ms,header_backwards,missing,notes

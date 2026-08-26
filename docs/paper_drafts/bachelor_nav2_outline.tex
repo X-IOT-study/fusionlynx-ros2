@@ -1,0 +1,103 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\graphicspath{{paper_drafts/figures/}}
+\geometry{margin=2.2cm}
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em}
+\setlist[enumerate]{leftmargin=2em,itemsep=0.35em}
+
+\title{本科论文题目与大纲}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{拟题}
+基于ROS 2的麦克纳姆轮室内移动平台多传感器接入、标定与Nav2导航验证
+
+\section*{定位}
+这篇本科论文不追求提出新的算法，而是完成一个可复现实验平台：把手柄遥操作、车载控制、传感器接入、坐标系标定、建图定位和Nav2导航串成闭环，并给出可量化的实验结果。
+
+\section*{一、论文主线}
+\begin{enumerate}
+  \item 搭建低成本麦克纳姆轮移动平台的ROS 2基础架构。
+  \item 接入UniLidar L2、Astra Pro、IMU和底盘驱动板，建立统一坐标系。
+  \item 结合现有\texttt{orbslam3\_ros}或LiDAR定位模块，实现稳定定位。
+  \item 接入Nav2，完成室内导航、避障与路径跟踪验证。
+  \item 用实验指标证明平台可用，而不是只展示“能跑起来”。
+\end{enumerate}
+
+\section*{二、章节大纲}
+\begin{enumerate}
+  \item 绪论
+  \begin{itemize}
+    \item 研究背景：室内低速移动平台、低成本多传感器与ROS 2导航
+    \item 研究目标：完成一个可验证、可复现、可扩展的实验平台
+    \item 论文内容与结构安排
+  \end{itemize}
+
+  \item 平台总体方案与需求分析
+  \begin{itemize}
+    \item 麦克纳姆轮平台的运动特点与非完整约束
+    \item 硬件组成：UniLidar L2、Astra Pro、IMU、STM32、Raspberry Pi 4B、Xbox手柄
+    \item 软件组成：ROS 2、Nav2、TF树、遥操作与可视化
+  \end{itemize}
+
+  \item 硬件接入与ROS 2通信设计
+  \begin{itemize}
+    \item 底盘驱动与IMU数据采集
+    \item 激光、深度相机与状态消息发布
+    \item 遥操作、安全停止与数据记录
+  \end{itemize}
+
+  \item 传感器标定与坐标系构建
+  \begin{itemize}
+    \item 传感器外参标定流程
+    \item 时间同步与消息对齐
+    \item map、odom、base\_link、sensor frame的统一
+  \end{itemize}
+
+  \item 定位与建图验证
+  \begin{itemize}
+    \item 选择一种主定位方式并完成闭环
+    \item 对比不同传感器组合下的轨迹稳定性
+    \item 记录轨迹、姿态、速度和定位漂移
+  \end{itemize}
+
+  \item Nav2导航实验与结果分析
+  \begin{itemize}
+    \item 建图与代价地图配置
+    \item 目标点导航、转弯、狭窄通道与动态障碍场景
+    \item 指标：到达率、路径误差、控制延迟、失败案例
+  \end{itemize}
+
+  \item 总结与展望
+  \begin{itemize}
+    \item 系统成果总结
+    \item 当前限制
+    \item 为Autoware升级预留接口
+  \end{itemize}
+\end{enumerate}
+
+\section*{三、建议图表}
+\begin{enumerate}
+  \item 系统总体结构图
+  \item 传感器与TF树示意图
+  \item 标定流程图
+  \item Nav2导航实验场景图
+  \item 轨迹对比图和误差曲线图
+\end{enumerate}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.93\linewidth]{bachelor_architecture.png}
+  \caption{本科论文系统架构草图。}
+\end{figure}
+
+\section*{四、建议的实验结论口径}
+这篇论文的结论建议写成“完成了一个稳定的室内移动平台实验底座，并验证了多传感器接入、标定与Nav2导航的可行性”，避免把自己写成新算法论文。
+
+\end{document}

@@ -66,6 +66,7 @@ protected:
     
     int cloud_scan_num_;
     bool use_system_timestamp_;
+    bool publish_tf_;
     double range_min_;
     double range_max_;
 
@@ -85,6 +86,11 @@ UnitreeLidarSDKNode::UnitreeLidarSDKNode(const rclcpp::NodeOptions &options)
     declare_parameter<int>("initialize_type", 2);
     declare_parameter<int>("work_mode", 0);
     declare_parameter<bool>("use_system_timestamp", true);
+    // Modified: 2026-08-20, WenSheng Xu.
+    // The robot description owns the canonical lidar_link -> unilidar_lidar
+    // identity relation.  Keep the driver's diagnostic TF optional so it
+    // cannot create a second parent for unilidar_lidar.
+    declare_parameter<bool>("publish_tf", false);
     declare_parameter<double>("range_min", 0);
     declare_parameter<double>("range_max", 50);
     declare_parameter<int>("cloud_scan_num", 18);
@@ -116,6 +122,7 @@ UnitreeLidarSDKNode::UnitreeLidarSDKNode(const rclcpp::NodeOptions &options)
 
     cloud_scan_num_ = get_parameter("cloud_scan_num").as_int();
     use_system_timestamp_ = get_parameter("use_system_timestamp").as_bool();
+    publish_tf_ = get_parameter("publish_tf").as_bool();
     range_max_ = get_parameter("range_max").as_double();
     range_min_ = get_parameter("range_min").as_double();
 
@@ -161,6 +168,7 @@ UnitreeLidarSDKNode::UnitreeLidarSDKNode(const rclcpp::NodeOptions &options)
     RCLCPP_INFO(this->get_logger(), "work_mode_ = %d", work_mode_);
     RCLCPP_INFO(this->get_logger(), "cloud_scan_num_ = %d", cloud_scan_num_);
     RCLCPP_INFO(this->get_logger(), "use_system_timestamp_ = %d", use_system_timestamp_);
+    RCLCPP_INFO(this->get_logger(), "publish_tf_ = %d", publish_tf_);
     RCLCPP_INFO(this->get_logger(), "range_min_ = %f", range_min_);
     RCLCPP_INFO(this->get_logger(), "range_max_ = %f", range_max_);
 
@@ -206,31 +214,48 @@ void UnitreeLidarSDKNode::timer_callback()
 
             pub_imu_->publish(imuMsg);
 
-            // publish tf from initial imu to real-time imu
-            geometry_msgs::msg::TransformStamped transformStamped;
-            transformStamped.header.stamp = this->now(); // 使用当前时间
-            transformStamped.header.frame_id = imu_frame_ + "_initial"; // 父坐标系
-            transformStamped.child_frame_id = imu_frame_; // 子坐标系
-            transformStamped.transform.translation.x = 0;
-            transformStamped.transform.translation.y = 0;
-            transformStamped.transform.translation.z = 0;
-            transformStamped.transform.rotation.x = imu.quaternion[1];
-            transformStamped.transform.rotation.y = imu.quaternion[2];
-            transformStamped.transform.rotation.z = imu.quaternion[3];
-            transformStamped.transform.rotation.w = imu.quaternion[0];
-            broadcaster_->sendTransform(transformStamped);
+            // Modified: 2026-08-20, WenSheng Xu.
+            // The previous implementation published both transforms
+            // unconditionally.  That made unilidar_lidar a child of
+            // unilidar_imu even when fusionlynx_description already exposed
+            // the physically identical lidar_link -> unilidar_lidar identity
+            // transform, resulting in competing TF parents.
+            //
+            // Keep the original diagnostic TF behavior available behind an
+            // explicit parameter for standalone driver visualization.  In
+            // the FusionLynx bringup this parameter remains false; the robot
+            // description is the only authority for the lidar mount.
+            if (publish_tf_)
+            {
+                geometry_msgs::msg::TransformStamped transformStamped;
 
-            // publish tf from imu to lidar
-            transformStamped.header.frame_id = imu_frame_; // 父坐标系
-            transformStamped.child_frame_id = cloud_frame_; // 子坐标系
-            transformStamped.transform.translation.x = 0.007698;
-            transformStamped.transform.translation.y = 0.014655;
-            transformStamped.transform.translation.z = -0.00667;
-            transformStamped.transform.rotation.x = 0;
-            transformStamped.transform.rotation.y = 0;
-            transformStamped.transform.rotation.z = 0;
-            transformStamped.transform.rotation.w = 1;
-            broadcaster_->sendTransform(transformStamped);
+                // Original behavior retained under publish_tf_ for
+                // standalone UniLidar debugging.
+                transformStamped.header.stamp = this->now(); // 使用当前时间
+                transformStamped.header.frame_id = imu_frame_ + "_initial"; // 父坐标系
+                transformStamped.child_frame_id = imu_frame_; // 子坐标系
+                transformStamped.transform.translation.x = 0;
+                transformStamped.transform.translation.y = 0;
+                transformStamped.transform.translation.z = 0;
+                transformStamped.transform.rotation.x = imu.quaternion[1];
+                transformStamped.transform.rotation.y = imu.quaternion[2];
+                transformStamped.transform.rotation.z = imu.quaternion[3];
+                transformStamped.transform.rotation.w = imu.quaternion[0];
+                broadcaster_->sendTransform(transformStamped);
+
+                // Original behavior retained under publish_tf_ for
+                // standalone UniLidar debugging.
+                transformStamped.header.frame_id = imu_frame_; // 父坐标系
+                transformStamped.child_frame_id = cloud_frame_; // 子坐标系
+                transformStamped.transform.translation.x = 0.007698;
+                transformStamped.transform.translation.y = 0.014655;
+                transformStamped.transform.translation.z = -0.00667;
+                transformStamped.transform.rotation.x = 0;
+                transformStamped.transform.rotation.y = 0;
+                transformStamped.transform.rotation.z = 0;
+                transformStamped.transform.rotation.w = 1;
+                broadcaster_->sendTransform(transformStamped);
+            }
         }
     }
     else if (result == LIDAR_POINT_DATA_PACKET_TYPE)

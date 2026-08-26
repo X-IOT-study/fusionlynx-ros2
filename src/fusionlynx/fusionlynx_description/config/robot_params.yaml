@@ -1,0 +1,44 @@
+robot_name: fusionlynx
+base_link: base_link
+imu_link: imu_link
+mag_link: mag_link
+body_link: body
+lidar_link: lidar_link
+camera_link: camera_link
+
+# Match the exported base mesh envelope from FusionLynx.blend.
+base_length: 0.280382
+base_width: 0.192242
+base_height: 0.151138
+
+# Match wheel_kinematics contract:
+# - wheel_radius = 0.04 m
+# - track_width = wheel_base = 0.2141 m
+wheel_radius: 0.04
+wheel_width: 0.0352
+wheel_base: 0.2141
+track_width: 0.2141
+
+# Blender scene tree uses slightly asymmetric wheel poses for visual fidelity.
+wheel_fl_xyz: [0.11, 0.1035, -0.043073]
+wheel_fr_xyz: [0.11, -0.1035, -0.043073]
+wheel_rl_xyz: [-0.11, 0.1035, -0.039499]
+wheel_rr_xyz: [-0.11, -0.1035, -0.039499]
+
+imu_xyz: [0.006176, 0.0125, 0.023]
+imu_rpy: [0, 0, -1.5707963]
+mag_xyz: [0.006176, 0.0125, 0.023]
+mag_rpy: [-3.1415926, 0, -1.5707963]
+
+# Fixed body/IMU mounting transform used by FAST-LIO body-frame cloud output.
+# The FAST-LIO odometry pose itself is published at lidar_link.
+fast_lio_body_xyz: [0.018482107, -0.012812206, 0.12667]
+fast_lio_body_rpy: [0, 0, 1.16937]
+
+# Match FusionLynx.blend:
+# - UniLidar L2 mounted slightly forward and rotated around Z.
+lidar_xyz: [0.008, 0.0, 0.12]
+lidar_rpy: [0.0, 0.0, 1.1693706]
+
+camera_xyz: [0.145, 0.0, 0.06]
+camera_rpy: [0.0, 0.0, 0.0]

@@ -1,0 +1,107 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\graphicspath{{paper_drafts/figures/}}
+\geometry{margin=2.2cm}
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em}
+\setlist[enumerate]{leftmargin=2em,itemsep=0.35em}
+
+\title{研究生论文题目与大纲}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{拟题}
+面向室内低速移动平台的低成本Autoware sensor kit构建、时空标定与导航验证
+
+\section*{定位}
+这篇研究生论文的重点不是做一个“能跑Autoware”的演示，而是围绕低成本室内平台的传感器套件设计、外参与时间同步标定、定位链路稳定性以及导航验证，形成一条可以复现实验和比较的技术路线。
+
+\section*{一、论文主线}
+\begin{enumerate}
+  \item 定义面向室内低速移动平台的Autoware sensor kit需求。
+  \item 构建低成本多传感器套件，并完成车载部署。
+  \item 研究并实现时空标定流程，降低定位和导航误差。
+  \item 在Autoware中完成定位、建图、规划和控制验证。
+  \item 用定量实验评估鲁棒性、精度和实时性。
+\end{enumerate}
+
+\section*{二、章节大纲}
+\begin{enumerate}
+  \item 绪论
+  \begin{itemize}
+    \item 室内低速移动平台与Autoware适配的研究背景
+    \item 低成本sensor kit的系统价值
+    \item 本文的研究目标与技术路线
+  \end{itemize}
+
+  \item 系统需求与总体架构
+  \begin{itemize}
+    \item 平台约束：速度低、空间小、障碍物密、轮滑明显
+    \item 硬件架构：UniLidar L2、Astra Pro、IMU、STM32、Raspberry Pi 4B
+    \item 软件架构：ROS 2、Autoware Universe、数据记录与调试工具
+  \end{itemize}
+
+  \item Sensor Kit构建与接口设计
+  \begin{itemize}
+    \item 传感器安装位姿与布置原则
+    \item 电气连接、数据链路与话题定义
+    \item 低层底盘控制和安全接管
+  \end{itemize}
+
+  \item 时空标定方法
+  \begin{itemize}
+    \item LiDAR、相机与IMU的外参标定
+    \item 传感器时间同步与消息对齐
+    \item 标定误差对定位与导航的影响分析
+  \end{itemize}
+
+  \item 定位与地图构建
+  \begin{itemize}
+    \item 选择Autoware定位链路
+    \item 点云地图或局部地图构建
+    \item 定位稳定性与轨迹误差评测
+  \end{itemize}
+
+  \item 导航验证与鲁棒性分析
+  \begin{itemize}
+    \item 目标点导航、路径跟踪与避障
+    \item 室内典型场景验证：窄通道、转角、遮挡、动态障碍
+    \item 对比不同传感器组合和标定质量下的结果
+  \end{itemize}
+
+  \item 总结与展望
+  \begin{itemize}
+    \item 论文贡献总结
+    \item 当前系统边界
+    \item 向更完整Autoware车平台扩展的可能性
+  \end{itemize}
+\end{enumerate}
+
+\section*{三、建议图表}
+\begin{enumerate}
+  \item Sensor kit总架构图
+  \item 传感器安装与坐标系关系图
+  \item 时空标定流程图
+  \item Autoware定位与导航链路图
+  \item 误差统计表与轨迹对比图
+\end{enumerate}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.93\linewidth]{graduate_architecture.png}
+  \caption{研究生论文系统架构草图。}
+\end{figure}
+
+\section*{四、建议的创新点表达}
+\begin{itemize}
+  \item 面向低成本室内平台，构建可复用的Autoware sensor kit。
+  \item 将时空标定作为系统关键问题，而不是只做硬件拼接。
+  \item 在真实移动平台上评测定位和导航的误差、延迟与鲁棒性。
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,10 @@
+# Reserved interface configuration.
+#
+# Modification: 2026-08-21, WenSheng Xu.
+# Reason: Record the future topic contract without claiming that a loop
+# closure implementation is available.
+fusionlynx_loop_closure:
+  ros__parameters:
+    optimized_path_topic: /fusionlynx_slam/optimized_path
+    source_path_topic: /rtabmap/mapPath
+    enabled: false

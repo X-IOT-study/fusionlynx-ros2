@@ -1,0 +1,90 @@
+# FusionLynx system profile.
+#
+# Modification: 2026-08-21, WenSheng Xu.
+# Reason: Keep the complete system-level sensor and output contract in one
+# reviewable profile while preserving independently launchable child packages.
+# The top-level launch passes this file to the fusion and mapping nodes; the
+# FAST-LIO frontend continues to use its package-owned UniLidar L2 profile.
+
+state_fusion_backend_node:
+  ros__parameters:
+    wheel_odom_topic: /motioncore/wheel_odom
+    imu_topic: /motioncore/imu/data
+    mag_topic: /motioncore/imu/mag
+    fastlio_topic: /fast_lio/odom
+    wheel_odom_frame: odom_wheel
+    wheel_child_frame: base_link
+    lio_world_frame: camera_init
+    lio_child_frame: lidar_link
+    fusion_profile: D
+    use_wheel_odom: true
+    use_fast_lio: true
+    use_lio_health: false
+    use_static_anchor: false
+    robust_kernel: huber
+    # Modification: 2026-08-21, WenSheng Xu.
+    # Reason: the fused odometry contract is the standard `/odom` topic.
+    fused_odom_topic: /odom
+    diagnostics_topic: /motioncore/diagnostics
+    odom_frame: odom
+    base_link_frame: base_link
+    publish_tf: true
+    frequency: 50.0
+    sensor_timeout: 0.5
+    max_time_delay: 0.5
+    max_future_stamp: 0.25
+    queue_size: 2000
+    reorder_window: 0.10
+    clock_offset_tolerance: 0.25
+    window_duration: 8.0
+    gravity: 9.81
+    # v1 role: IMU/MAG are health-monitoring inputs only. They do not enter
+    # the localization graph until a separately validated factor experiment.
+    use_motioncore_imu: false
+    use_magnetic_heading_factor: false
+    mag_calibration_valid: false
+    use_planar_prior: true
+    planar_z_sigma: 0.10
+    planar_roll_sigma: 0.10
+    planar_pitch_sigma: 0.10
+    planar_reference_z: 0.0
+    planar_reference_roll: 0.0
+    planar_reference_pitch: 0.0
+    lio_z_sigma_scale: 10.0
+    wheel_x_sigma: 0.03
+    wheel_y_sigma: 0.03
+    wheel_yaw_sigma: 0.05
+    lio_position_sigma: 0.05
+    lio_rotation_sigma: 0.03
+    stationary_speed_threshold: 0.02
+    stationary_yaw_rate_threshold: 0.03
+    static_min_duration: 0.50
+    static_gyro_threshold: 0.03
+    mag_norm_relative_change_threshold: 0.20
+    stationary_lio_scale: 20.0
+    stationary_pose_sigma: 0.01
+    zero_velocity_sigma: 0.02
+    fallback_pose_sigma: 1.0
+    imu_accel_sigma: 0.10
+    imu_gyro_sigma: 0.03
+    imu_bias_accel_sigma: 0.001
+    imu_bias_gyro_sigma: 0.0001
+    mag_noise_sigma: 0.25
+    mag_field_norm_min: 0.000020
+    mag_field_norm_max: 0.000070
+    robust_kernel_scale: 1.0
+    max_pose_jump: 1.0
+    max_pose_jump_yaw: 0.5
+    lio_degraded_scale: 10.0
+    recovery_stable_count: 5
+    lio_nis_degraded_threshold: 16.8
+    lio_nis_failed_threshold: 30.0
+    lio_consistency_degraded_threshold: 3.0
+    lio_consistency_failed_threshold: 6.0
+    wheel_consistency_position_sigma: 0.10
+    wheel_consistency_yaw_sigma: 0.08
+    imu_consistency_yaw_sigma: 0.10
+    diagnostics_publish_rate: 5.0
+    # T_lidar_base: FAST-LIO publishes the pose at lidar_link.
+    lio_lidar_to_base_xyz: [-0.00312585, 0.00736404, -0.12]
+    lio_lidar_to_base_rpy: [0.0, 0.0, -1.1693706]

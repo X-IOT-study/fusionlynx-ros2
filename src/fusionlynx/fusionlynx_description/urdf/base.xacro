@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="fusionlynx_base" params="base_link imu_link mag_link body_link base_length base_width base_height imu_xyz imu_rpy mag_xyz mag_rpy body_xyz body_rpy base_mesh">
+    <link name="${base_link}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${base_mesh}"/>
+        </geometry>
+        <material name="aluminum_anodized_matte_green"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${base_length} ${base_width} ${base_height}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="15.0"/>
+        <inertia ixx="0.30" ixy="0.0" ixz="0.0" iyy="0.40" iyz="0.0" izz="0.50"/>
+      </inertial>
+    </link>
+
+    <link name="${imu_link}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.003 0.003 0.001"/>
+        </geometry>
+        <material name="matte_black"/>
+      </visual>
+    </link>
+    <joint name="${base_link}_to_${imu_link}" type="fixed">
+      <parent link="${base_link}"/>
+      <child link="${imu_link}"/>
+      <origin xyz="${imu_xyz}" rpy="${imu_rpy}"/>
+    </joint>
+
+    <link name="${mag_link}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.003 0.003 0.001"/>
+        </geometry>
+        <material name="light_gray"/>
+      </visual>
+    </link>
+    <joint name="${base_link}_to_${mag_link}" type="fixed">
+      <parent link="${base_link}"/>
+      <child link="${mag_link}"/>
+      <origin xyz="${mag_xyz}" rpy="${mag_rpy}"/>
+    </joint>
+
+    <!-- Static FAST-LIO body/IMU frame used by the deskewed body cloud. -->
+    <link name="${body_link}"/>
+    <joint name="${base_link}_to_${body_link}" type="fixed">
+      <parent link="${base_link}"/>
+      <child link="${body_link}"/>
+      <origin xyz="${body_xyz}" rpy="${body_rpy}"/>
+    </joint>
+  </xacro:macro>
+</robot>
