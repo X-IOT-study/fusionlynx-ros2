@@ -562,6 +562,8 @@ Keep the RTAB-Map integration inside `fusionlynx_mapping`.
 15. Avoid broad refactors while fixing a specific issue.
 16. Search for all affected publishers, subscribers, TF broadcasters, launch
     files, YAML files, and tests before changing an interface.
+17. After every change, stage the related files with `git add` and create a
+    clear `git commit` so that each modification remains traceable.
 
 ---
 
