@@ -1,0 +1,11 @@
+Use case: scientific-educational
+Asset type: 16:9 academic presentation context image
+Primary request: A compact mecanum-wheel mobile robot using a roof-mounted 3D LiDAR to traverse an indoor corridor with shelves and structural features, shown as a realistic engineering scene with a subtle translucent point-cloud envelope around nearby surfaces. The image should communicate LiDAR-inertial odometry and wheel motion complementarity without any text, equations, logos, or fabricated charts.
+Scene/backdrop: indoor warehouse or laboratory corridor with repeated structure, moderate geometric features, no people
+Subject: the mobile robot viewed from behind and slightly above, LiDAR scan rays and point-cloud returns kept subtle and physically plausible
+Style/medium: clean scientific editorial photography with restrained visualization overlay
+Composition/framing: wide landscape, robot near lower-left or lower-center, corridor leading lines toward the upper-right, leave a calm region for a short caption
+Lighting/mood: even neutral light, realistic and analytical
+Color palette: cool gray architecture, muted green robot body, small cyan point-cloud accents
+Constraints: no text; no labels; no watermark; no exaggerated holograms; point cloud must not obscure the robot
+Avoid: autonomous-driving road scene, humanoid robot, fantasy lidar beams, neon cyberpunk style, heavy blur, cluttered dashboard UI

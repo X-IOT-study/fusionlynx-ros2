@@ -1,0 +1,12 @@
+Use case: scientific-educational
+Asset type: 16:9 academic thesis-defense cover visual
+Primary request: A realistic compact mecanum-wheel mobile robot equipped with a roof-mounted 3D LiDAR and visible inertial-sensor enclosure, operating in a clean indoor robotics laboratory. A restrained, subtle point-cloud trace and a faint local trajectory arc may appear around the robot, but no equations, labels, logos, watermark, or readable text.
+Scene/backdrop: clean engineering laboratory with neutral walls and a lightly structured floor, enough negative space on the left for a Chinese presentation title
+Subject: small four-wheel mecanum robot, LiDAR sensor, sensor mounting and wheel geometry clearly visible
+Style/medium: high-fidelity editorial engineering photography with restrained scientific visualization overlay
+Composition/framing: wide landscape, robot placed on the right third, camera at low three-quarter angle, clear silhouette, no cropped wheels or sensor
+Lighting/mood: soft neutral laboratory lighting, precise and calm
+Color palette: white, graphite, muted green, and one restrained cyan accent
+Materials/textures: matte painted chassis, rubber mecanum wheels, metal LiDAR housing, realistic floor texture
+Constraints: scientifically plausible robot geometry; no invented measurement values; no text; no UI panels; no decorative gradient background
+Avoid: humanoid robots, autonomous cars, extra sensors, floating labels, dramatic neon lighting, excessive fog, motion blur, clutter, watermark
