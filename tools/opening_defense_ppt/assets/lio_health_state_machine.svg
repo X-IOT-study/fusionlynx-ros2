@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="960" viewBox="0 0 1536 960" role="img" aria-labelledby="title desc">
+  <title id="title">LIO health monitoring and factor scheduling</title>
+  <desc id="desc">Vector state machine showing evidence inputs, healthy, degraded, failed and recovering states, and factor scheduling actions.</desc>
+  <defs>
+    <marker id="arrow-black" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L11,4 L0,8 Z" fill="#202b31"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L11,4 L0,8 Z" fill="#21844a"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L11,4 L0,8 Z" fill="#d98218"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L11,4 L0,8 Z" fill="#cf3e32"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L11,4 L0,8 Z" fill="#2d5ca8"/>
+    </marker>
+    <style>
+      .title { font: 700 30px Arial, Helvetica, sans-serif; fill: #17232b; }
+      .subtitle { font: 400 15px Arial, Helvetica, sans-serif; fill: #67747b; }
+      .section { font: 700 17px Arial, Helvetica, sans-serif; fill: #202b31; }
+      .state { font: 700 25px Arial, Helvetica, sans-serif; }
+      .action { font: 700 17px Arial, Helvetica, sans-serif; fill: #202b31; }
+      .body { font: 400 15px Arial, Helvetica, sans-serif; fill: #35464e; }
+      .small { font: 400 13px Arial, Helvetica, sans-serif; fill: #506069; }
+      .input { font: 700 15px Arial, Helvetica, sans-serif; fill: #26363e; }
+      .edge-label { font: 700 15px Arial, Helvetica, sans-serif; fill: #27363d; }
+      .statebox { fill: #ffffff; stroke-width: 3; rx: 18; }
+      .inputbox { fill: #f7f8f8; stroke: #7a858a; stroke-width: 2; rx: 10; }
+      .evidencebox { fill: #ffffff; stroke: #b7bec2; stroke-width: 1.5; rx: 8; }
+      .flow { fill: none; stroke-width: 2.8; marker-end: url(#arrow-black); }
+      .flow-green { stroke: #21844a; marker-end: url(#arrow-green); }
+      .flow-orange { stroke: #d98218; marker-end: url(#arrow-orange); }
+      .flow-red { stroke: #cf3e32; marker-end: url(#arrow-red); }
+      .flow-blue { stroke: #2d5ca8; marker-end: url(#arrow-blue); }
+    </style>
+  </defs>
+
+  <rect width="1536" height="960" fill="#ffffff"/>
+  <text x="768" y="42" text-anchor="middle" class="title">LIO health monitoring and factor scheduling</text>
+  <text x="768" y="68" text-anchor="middle" class="subtitle">Observable evidence determines the factor action applied to FAST-LIO measurements</text>
+
+  <!-- Evidence inputs -->
+  <rect x="48" y="125" width="265" height="535" class="inputbox"/>
+  <text x="180" y="164" text-anchor="middle" class="section">EVIDENCE INPUTS</text>
+  <rect x="78" y="195" width="205" height="66" class="evidencebox"/>
+  <text x="180" y="235" text-anchor="middle" class="input">innovation / NIS</text>
+  <rect x="78" y="282" width="205" height="66" class="evidencebox"/>
+  <text x="180" y="322" text-anchor="middle" class="input">wheel consistency</text>
+  <rect x="78" y="369" width="205" height="66" class="evidencebox"/>
+  <text x="180" y="409" text-anchor="middle" class="input">IMU consistency</text>
+  <rect x="78" y="456" width="205" height="66" class="evidencebox"/>
+  <text x="180" y="496" text-anchor="middle" class="input">magnetic norm change</text>
+  <rect x="78" y="543" width="205" height="66" class="evidencebox"/>
+  <text x="180" y="583" text-anchor="middle" class="input">timeout</text>
+
+  <!-- External monitor -->
+  <rect x="365" y="285" width="250" height="260" fill="#ffffff" stroke="#202b31" stroke-width="2.5" rx="16"/>
+  <text x="490" y="326" text-anchor="middle" class="section">EXTERNAL</text>
+  <text x="490" y="349" text-anchor="middle" class="section">LIO HEALTH MONITOR</text>
+  <text x="490" y="372" text-anchor="middle" class="section">(FAST-LIO)</text>
+  <line x1="415" y1="392" x2="565" y2="392" stroke="#d7dfe2" stroke-width="1"/>
+  <text x="490" y="425" text-anchor="middle" class="body">Monitors the reliability</text>
+  <text x="490" y="449" text-anchor="middle" class="body">of LIO observations.</text>
+  <text x="490" y="489" text-anchor="middle" class="small">not a pose estimator</text>
+  <text x="490" y="512" text-anchor="middle" class="small">outputs a scheduling decision</text>
+
+  <path d="M313 390 H365" class="flow"/>
+
+  <!-- State boxes -->
+  <rect x="720" y="115" width="280" height="155" class="statebox" stroke="#21844a"/>
+  <text x="860" y="167" text-anchor="middle" class="state" fill="#21844a">HEALTHY</text>
+  <line x1="770" y1="190" x2="950" y2="190" stroke="#21844a" stroke-width="2"/>
+  <text x="860" y="229" text-anchor="middle" class="action">accept LIO factor</text>
+
+  <rect x="1120" y="115" width="280" height="155" class="statebox" stroke="#d98218"/>
+  <text x="1260" y="167" text-anchor="middle" class="state" fill="#d98218">DEGRADED</text>
+  <line x1="1170" y1="190" x2="1350" y2="190" stroke="#d98218" stroke-width="2"/>
+  <text x="1260" y="229" text-anchor="middle" class="action">inflate covariance</text>
+
+  <rect x="1120" y="405" width="280" height="155" class="statebox" stroke="#cf3e32"/>
+  <text x="1260" y="457" text-anchor="middle" class="state" fill="#cf3e32">FAILED</text>
+  <line x1="1170" y1="480" x2="1350" y2="480" stroke="#cf3e32" stroke-width="2"/>
+  <text x="1260" y="519" text-anchor="middle" class="action">reject LIO factor</text>
+
+  <rect x="720" y="405" width="280" height="155" class="statebox" stroke="#2d5ca8"/>
+  <text x="860" y="457" text-anchor="middle" class="state" fill="#2d5ca8">RECOVERING</text>
+  <line x1="770" y1="480" x2="950" y2="480" stroke="#2d5ca8" stroke-width="2"/>
+  <text x="860" y="519" text-anchor="middle" class="action">align recovered pose</text>
+
+  <!-- Monitor to state flow -->
+  <path d="M615 340 H675 V192 H720" class="flow flow-green"/>
+  <text x="665" y="278" text-anchor="end" class="edge-label">stable observations</text>
+
+  <!-- State transitions -->
+  <path d="M1000 192 H1120" class="flow flow-orange"/>
+  <text x="1060" y="159" text-anchor="middle" class="edge-label">innovation / consistency rises</text>
+
+  <path d="M1260 270 V405" class="flow flow-red"/>
+  <text x="1318" y="338" text-anchor="middle" class="edge-label">continuous anomaly</text>
+  <text x="1318" y="360" text-anchor="middle" class="edge-label">or timeout</text>
+
+  <path d="M1120 482 H1000" class="flow flow-blue"/>
+  <text x="1060" y="522" text-anchor="middle" class="edge-label">LIO returns</text>
+  <text x="1060" y="544" text-anchor="middle" class="edge-label">alignment begins</text>
+
+  <path d="M860 405 V270" class="flow flow-green"/>
+  <text x="902" y="346" text-anchor="start" class="edge-label">alignment complete</text>
+
+  <!-- Lower static anchor logic -->
+  <rect x="330" y="665" width="1070" height="170" fill="#fffaf2" stroke="#d98218" stroke-width="2" stroke-dasharray="9 7" rx="14"/>
+  <text x="360" y="706" class="state" fill="#d98218" style="font-size:20px;">STATIC EVIDENCE</text>
+
+  <rect x="585" y="690" width="185" height="75" class="evidencebox" style="stroke:#d98218;"/>
+  <text x="677" y="723" text-anchor="middle" class="input">wheel speed</text>
+  <text x="677" y="747" text-anchor="middle" class="small">approximately 0</text>
+  <text x="785" y="735" text-anchor="middle" class="state" fill="#d98218" style="font-size:27px;">+</text>
+
+  <rect x="810" y="690" width="185" height="75" class="evidencebox" style="stroke:#d98218;"/>
+  <text x="902" y="723" text-anchor="middle" class="input">wheel yaw rate</text>
+  <text x="902" y="747" text-anchor="middle" class="small">approximately 0</text>
+  <text x="1012" y="735" text-anchor="middle" class="state" fill="#d98218" style="font-size:27px;">+</text>
+
+  <rect x="1038" y="690" width="150" height="75" class="evidencebox" style="stroke:#d98218;"/>
+  <text x="1113" y="723" text-anchor="middle" class="input">IMU gyro</text>
+  <text x="1113" y="747" text-anchor="middle" class="small">approximately 0</text>
+  <path d="M1200 728 H1240" stroke="#d98218" stroke-width="2.5" marker-end="url(#arrow-orange)"/>
+
+  <rect x="1250" y="690" width="110" height="75" class="evidencebox" style="stroke:#d98218;"/>
+  <text x="1305" y="723" text-anchor="middle" class="input">stationary</text>
+  <text x="1305" y="747" text-anchor="middle" class="input">anchor</text>
+
+  <text x="350" y="878" class="small">Magnetic norm change is a magnetic-field stability cue only; it is not a yaw factor or a vertical constraint.</text>
+  <text x="350" y="902" class="small">The monitor gates FAST-LIO factors; it does not estimate pose.</text>
+</svg>
