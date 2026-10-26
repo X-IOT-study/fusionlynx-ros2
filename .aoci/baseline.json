@@ -1,0 +1,973 @@
+{
+  "version": 1,
+  "created_at": "2026-10-04T02:15:17Z",
+  "updated_at": "2026-10-04T04:18:49Z",
+  "files": {
+    ".gitattributes": {
+      "role": "index",
+      "sha256": "9bba0e386f6a78010cfec296984bdf91b78f62774a56b407c660fd6c606afd3e",
+      "size": 564,
+      "normalized_sha256": "9bba0e386f6a78010cfec296984bdf91b78f62774a56b407c660fd6c606afd3e"
+    },
+    ".gitignore": {
+      "role": "index",
+      "sha256": "e59947e04a2c01ee01cd08030a566ebc3d5e7124222557d8704ae24758965019",
+      "size": 2126,
+      "normalized_sha256": "e59947e04a2c01ee01cd08030a566ebc3d5e7124222557d8704ae24758965019"
+    },
+    ".gitmodules": {
+      "role": "index",
+      "sha256": "9d3e6bba1976dcf8f9e6b1bcbe9a01dbbe5b9ec27d8238726d7761b382bf4152",
+      "size": 565,
+      "normalized_sha256": "9d3e6bba1976dcf8f9e6b1bcbe9a01dbbe5b9ec27d8238726d7761b382bf4152"
+    },
+    "AGENTS.md": {
+      "role": "index",
+      "sha256": "ac0b22cc2c0c72a35383656ef035826b4ddb7f1cc9c946768518ac678a4f3d82",
+      "size": 18479,
+      "normalized_sha256": "ac0b22cc2c0c72a35383656ef035826b4ddb7f1cc9c946768518ac678a4f3d82"
+    },
+    "README.md": {
+      "role": "index",
+      "sha256": "78d84efdd3298261ef834284b2ee8fbb8e5096fbbbee26682058b795a6451adf",
+      "size": 1185,
+      "normalized_sha256": "78d84efdd3298261ef834284b2ee8fbb8e5096fbbbee26682058b795a6451adf"
+    },
+    "TODO.md": {
+      "role": "index",
+      "sha256": "31d38a29fcf61addc0e6a0812ad4c942ae343f5e1a5da31438a950f53c021e2c",
+      "size": 381,
+      "normalized_sha256": "31d38a29fcf61addc0e6a0812ad4c942ae343f5e1a5da31438a950f53c021e2c"
+    },
+    "analyze_imu.py": {
+      "role": "index",
+      "sha256": "ec46af3cfd8680c92076e016933665479097008abe313ab8e8ca958d584ed0df",
+      "size": 4592,
+      "normalized_sha256": "ec46af3cfd8680c92076e016933665479097008abe313ab8e8ca958d584ed0df"
+    },
+    "aoci.code.txt": {
+      "role": "index",
+      "sha256": "2956b3dca270ec231849c4c89546a1e506e8077851a08d7cf79e892c0266d3a6",
+      "size": 64590,
+      "normalized_sha256": "2956b3dca270ec231849c4c89546a1e506e8077851a08d7cf79e892c0266d3a6"
+    },
+    "aoci.meta.txt": {
+      "role": "index",
+      "sha256": "fbc304fa05182547e96f1f8404c7c30ad6c366bba9589523f1019c2c1da0427c",
+      "size": 1989,
+      "normalized_sha256": "fbc304fa05182547e96f1f8404c7c30ad6c366bba9589523f1019c2c1da0427c"
+    },
+    "aoci.txt": {
+      "role": "index",
+      "sha256": "7731b8459f1f96fe77769b736707c15275bfdcaeebacabffe72775ac14009762",
+      "size": 296,
+      "normalized_sha256": "7731b8459f1f96fe77769b736707c15275bfdcaeebacabffe72775ac14009762"
+    },
+    "check_l2_cloud.py": {
+      "role": "index",
+      "sha256": "1dcf092d473d1504c80de4155cde84daadb710bd4bf73722b13387f688a6e716",
+      "size": 1069,
+      "normalized_sha256": "1dcf092d473d1504c80de4155cde84daadb710bd4bf73722b13387f688a6e716"
+    },
+    "clion_build.sh": {
+      "role": "index",
+      "sha256": "ab42f3133941dd203d5ba1f750d1b44b5a865bee5ebfa0f7c4499299c3890c07",
+      "size": 2498,
+      "normalized_sha256": "ab42f3133941dd203d5ba1f750d1b44b5a865bee5ebfa0f7c4499299c3890c07"
+    },
+    "clion_debug.sh": {
+      "role": "index",
+      "sha256": "39c1a4e226a3a9d03c71e8ea62af47b1d0101fabae3e7347e0aae4229c22b35d",
+      "size": 414,
+      "normalized_sha256": "39c1a4e226a3a9d03c71e8ea62af47b1d0101fabae3e7347e0aae4229c22b35d"
+    },
+    "daily_execution_checklist.md": {
+      "role": "index",
+      "sha256": "3d15e1b97aa4fe98c541bfdec08fe5c0aa8b36d4d040749f3287d873a1d7d886",
+      "size": 5028,
+      "normalized_sha256": "3d15e1b97aa4fe98c541bfdec08fe5c0aa8b36d4d040749f3287d873a1d7d886"
+    },
+    "data/README.md": {
+      "role": "index",
+      "sha256": "0f46ec2049b3bd8e3ed355a35bb1cb8d87f4caadce4edfc124e63b5de14b3ec1",
+      "size": 881,
+      "normalized_sha256": "0f46ec2049b3bd8e3ed355a35bb1cb8d87f4caadce4edfc124e63b5de14b3ec1"
+    },
+    "docs/AGENTS.full.md": {
+      "role": "index",
+      "sha256": "d172e9626fb7caf38148ec3696d4fc6f216199dd06d7bb0a2bb5c3ea0eed71f9",
+      "size": 23065,
+      "normalized_sha256": "d172e9626fb7caf38148ec3696d4fc6f216199dd06d7bb0a2bb5c3ea0eed71f9"
+    },
+    "docs/architecture.md": {
+      "role": "index",
+      "sha256": "8326cbe592d1cfe0e1799037120db645870f570c50f7935bddca3b5b3d4a9d98",
+      "size": 2278,
+      "normalized_sha256": "8326cbe592d1cfe0e1799037120db645870f570c50f7935bddca3b5b3d4a9d98"
+    },
+    "docs/deployment.md": {
+      "role": "index",
+      "sha256": "d3134cb4218e4ea5dd10f6cc5fcd53504d20e04d9eba38f4d5c0bda920edf318",
+      "size": 2039,
+      "normalized_sha256": "d3134cb4218e4ea5dd10f6cc5fcd53504d20e04d9eba38f4d5c0bda920edf318"
+    },
+    "docs/development.md": {
+      "role": "index",
+      "sha256": "a3b473664d81ef0fffbc4bef8284400441065b47bcc4d629cfabc5e9bd4968ae",
+      "size": 2486,
+      "normalized_sha256": "a3b473664d81ef0fffbc4bef8284400441065b47bcc4d629cfabc5e9bd4968ae"
+    },
+    "docs/development/git_workflow.md": {
+      "role": "index",
+      "sha256": "d1c26d835c3882bcd4548bcc2b537378af0d58d08f562d7ac35fa67b4793a001",
+      "size": 5914,
+      "normalized_sha256": "d1c26d835c3882bcd4548bcc2b537378af0d58d08f562d7ac35fa67b4793a001"
+    },
+    "docs/fusion.md": {
+      "role": "index",
+      "sha256": "e8452cd54bea268acebcd8e8156feb61e2019ad3a482d8c343c223f4da8045ad",
+      "size": 1962,
+      "normalized_sha256": "e8452cd54bea268acebcd8e8156feb61e2019ad3a482d8c343c223f4da8045ad"
+    },
+    "docs/fusionlynx_lio_logging.md": {
+      "role": "index",
+      "sha256": "5b4d6d6c88571c619d9624b7bf5fac2e0982dc35b21b74cccb77bd806c7e98ad",
+      "size": 3197,
+      "normalized_sha256": "5b4d6d6c88571c619d9624b7bf5fac2e0982dc35b21b74cccb77bd806c7e98ad"
+    },
+    "docs/slam.md": {
+      "role": "index",
+      "sha256": "55d50001e56e0de09c00083d88a2b8ed216aa115f28f23875d2ec57291a4332e",
+      "size": 1660,
+      "normalized_sha256": "55d50001e56e0de09c00083d88a2b8ed216aa115f28f23875d2ec57291a4332e"
+    },
+    "docs/tf.md": {
+      "role": "index",
+      "sha256": "1d26f2994e67c0442fcc8e3617953513ca75a079c0266e6a7d1caa389850dbf2",
+      "size": 1701,
+      "normalized_sha256": "1d26f2994e67c0442fcc8e3617953513ca75a079c0266e6a7d1caa389850dbf2"
+    },
+    "docs/vault/2026-08-23-rtabmap-moving-map-timestamp.md": {
+      "role": "index",
+      "sha256": "34d47c1ee794049e0026f407772561d48cbc48f881a66df30ca7acec05967ad5",
+      "size": 3015,
+      "normalized_sha256": "34d47c1ee794049e0026f407772561d48cbc48f881a66df30ca7acec05967ad5"
+    },
+    "docs/vault/2026-08-23-state-fusion-lio-logging.md": {
+      "role": "index",
+      "sha256": "4071b547c07b7a9488866fcae1a3c51a0bdb66387581ece950720d624041bc1e",
+      "size": 1777,
+      "normalized_sha256": "4071b547c07b7a9488866fcae1a3c51a0bdb66387581ece950720d624041bc1e"
+    },
+    "docs/vault/2026-08-24-bag-collection-tables.md": {
+      "role": "index",
+      "sha256": "ee3de91bc537a0cf92417a1fce20168d2597c98897824c25bd913f69ef6c5882",
+      "size": 2354,
+      "normalized_sha256": "ee3de91bc537a0cf92417a1fce20168d2597c98897824c25bd913f69ef6c5882"
+    },
+    "docs/vault/2026-08-24-fast-lio-base-link-validation.md": {
+      "role": "index",
+      "sha256": "5ddbf086d9cf9e5ba68f015b66d9d7b245052bd5c86f80698a0b8642cbc76cd5",
+      "size": 2127,
+      "normalized_sha256": "5ddbf086d9cf9e5ba68f015b66d9d7b245052bd5c86f80698a0b8642cbc76cd5"
+    },
+    "project-overview.md": {
+      "role": "index",
+      "sha256": "41a32a6d9b58f245e4ba31fe412114a243dd7465096053d05932ad3a936cefd4",
+      "size": 959,
+      "normalized_sha256": "41a32a6d9b58f245e4ba31fe412114a243dd7465096053d05932ad3a936cefd4"
+    },
+    "scripts/README.md": {
+      "role": "index",
+      "sha256": "fa479212e803c51d2961d224d330440e9310ce5a807adf1638226f3bd0617999",
+      "size": 7295,
+      "normalized_sha256": "fa479212e803c51d2961d224d330440e9310ce5a807adf1638226f3bd0617999"
+    },
+    "scripts/collect_fusion_test_bag.py": {
+      "role": "index",
+      "sha256": "b894b69f4390dce9017cfa12c39606e9a51a5def2e5cd7f2797aa8deaedfb25a",
+      "size": 23791,
+      "normalized_sha256": "b894b69f4390dce9017cfa12c39606e9a51a5def2e5cd7f2797aa8deaedfb25a"
+    },
+    "scripts/compare_trajectories_evo.py": {
+      "role": "index",
+      "sha256": "4f5ede6b3bcdfcdafa82dcce28a7c83ae548558e7785a0d0a10f99fc116ca283",
+      "size": 8370,
+      "normalized_sha256": "4f5ede6b3bcdfcdafa82dcce28a7c83ae548558e7785a0d0a10f99fc116ca283"
+    },
+    "scripts/export_rtabmap_db_to_pcd.py": {
+      "role": "index",
+      "sha256": "8bb025988d0a3108cbad5d4a59a775620e60884e745d8ba1a87d71d475f51921",
+      "size": 10717,
+      "normalized_sha256": "8bb025988d0a3108cbad5d4a59a775620e60884e745d8ba1a87d71d475f51921"
+    },
+    "scripts/export_rtabmap_trajectory.py": {
+      "role": "index",
+      "sha256": "41df7973d23181268bcd35916caf434d9b90de36bdb48c5b856fc7a906092602",
+      "size": 12445,
+      "normalized_sha256": "41df7973d23181268bcd35916caf434d9b90de36bdb48c5b856fc7a906092602"
+    },
+    "scripts/motioncore_analyze_bag.py": {
+      "role": "index",
+      "sha256": "db74da16cfd721ab49a37e6d58ea3abb96cf5e533a31d9e2c50b5abac38aa156",
+      "size": 9851,
+      "normalized_sha256": "db74da16cfd721ab49a37e6d58ea3abb96cf5e533a31d9e2c50b5abac38aa156"
+    },
+    "scripts/motioncore_pi_diag.sh": {
+      "role": "index",
+      "sha256": "3102e0d41bc102bb998a01c77d83ab0812ae24fad796e36eaebc7f295c42a265",
+      "size": 3215,
+      "normalized_sha256": "3102e0d41bc102bb998a01c77d83ab0812ae24fad796e36eaebc7f295c42a265"
+    },
+    "scripts/motioncore_record_bag.sh": {
+      "role": "index",
+      "sha256": "32f25841181a32c1a7b89bee9519961c44d5672134d9c34e9951c852f2f30302",
+      "size": 2793,
+      "normalized_sha256": "32f25841181a32c1a7b89bee9519961c44d5672134d9c34e9951c852f2f30302"
+    },
+    "scripts/run_fusion_profile_experiment.py": {
+      "role": "index",
+      "sha256": "9adf827c9938025fcfd7a59914a2920e9d4dac327a9be2cd2bc3f3dde970445c",
+      "size": 12141,
+      "normalized_sha256": "9adf827c9938025fcfd7a59914a2920e9d4dac327a9be2cd2bc3f3dde970445c"
+    },
+    "scripts/templates/bag_quality.csv": {
+      "role": "index",
+      "sha256": "f13c050e223782949a5c2727e20356f65cb3c53e7c92297f66cfeec49aa5a12a",
+      "size": 309,
+      "normalized_sha256": "f13c050e223782949a5c2727e20356f65cb3c53e7c92297f66cfeec49aa5a12a"
+    },
+    "scripts/templates/bag_topic_stats.csv": {
+      "role": "index",
+      "sha256": "9656de0f4f9a67af2bf2d59a4705e5778665221883ce32a4745d818c9f0654ad",
+      "size": 288,
+      "normalized_sha256": "9656de0f4f9a67af2bf2d59a4705e5778665221883ce32a4745d818c9f0654ad"
+    },
+    "scripts/templates/experiment_runs.csv": {
+      "role": "index",
+      "sha256": "baf444a4c79db382579b84a9e20a227b758f1f1546a344a95051c5c568fdd233",
+      "size": 323,
+      "normalized_sha256": "baf444a4c79db382579b84a9e20a227b758f1f1546a344a95051c5c568fdd233"
+    },
+    "slam_thesis_workflow.md": {
+      "role": "index",
+      "sha256": "b486610064cf9c5e5c0c7f033160e97ced7886a0b00d9570166c128cfc68ab25",
+      "size": 18402,
+      "normalized_sha256": "b486610064cf9c5e5c0c7f033160e97ced7886a0b00d9570166c128cfc68ab25"
+    },
+    "src/fusionlynx/AGENTS.md": {
+      "role": "index",
+      "sha256": "28b669a3ad58725b7538a92e2543ce680b1bdffee344376b4e7685bffdf70131",
+      "size": 1724,
+      "normalized_sha256": "28b669a3ad58725b7538a92e2543ce680b1bdffee344376b4e7685bffdf70131"
+    },
+    "src/fusionlynx/fusionlynx_bringup/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "1c45c7dd2e54f3a61f3ae4380ae6e7181f075004197e15d5f4b7d56df3176abd",
+      "size": 250,
+      "normalized_sha256": "1c45c7dd2e54f3a61f3ae4380ae6e7181f075004197e15d5f4b7d56df3176abd"
+    },
+    "src/fusionlynx/fusionlynx_bringup/README.md": {
+      "role": "index",
+      "sha256": "0bbe54b51142698100f56a238e22354e63a3a07f68c3d5d61ea2bcf9435ccf47",
+      "size": 2176,
+      "normalized_sha256": "0bbe54b51142698100f56a238e22354e63a3a07f68c3d5d61ea2bcf9435ccf47"
+    },
+    "src/fusionlynx/fusionlynx_bringup/launch/pc.launch.py": {
+      "role": "index",
+      "sha256": "76b479269bab01f26bca3b51cef23968fbe661ed9c25ac03473847eb6fe415ea",
+      "size": 5307,
+      "normalized_sha256": "76b479269bab01f26bca3b51cef23968fbe661ed9c25ac03473847eb6fe415ea"
+    },
+    "src/fusionlynx/fusionlynx_bringup/package.xml": {
+      "role": "index",
+      "sha256": "b4aae6298cd4ed70399a8ba765cf8a4bebe408d1979f0a1e2f17f35504c44715",
+      "size": 573,
+      "normalized_sha256": "b4aae6298cd4ed70399a8ba765cf8a4bebe408d1979f0a1e2f17f35504c44715"
+    },
+    "src/fusionlynx/fusionlynx_description/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "117f2f347178b93666339a183c9363cfe73aa9903e578197a3babbbeaa27278e",
+      "size": 435,
+      "normalized_sha256": "117f2f347178b93666339a183c9363cfe73aa9903e578197a3babbbeaa27278e"
+    },
+    "src/fusionlynx/fusionlynx_description/config/display.rviz": {
+      "role": "index",
+      "sha256": "48f9c0d20cf77dfe71a63fd82d19a8e06c1f913d0e9c4895aa2c1f77fcacce36",
+      "size": 8510,
+      "normalized_sha256": "48f9c0d20cf77dfe71a63fd82d19a8e06c1f913d0e9c4895aa2c1f77fcacce36"
+    },
+    "src/fusionlynx/fusionlynx_description/config/robot_params.yaml": {
+      "role": "index",
+      "sha256": "c64aa06a131cefa64c7a830d600fe7e4f892197cccb6a68f3cc51204fcf96cf1",
+      "size": 1282,
+      "normalized_sha256": "c64aa06a131cefa64c7a830d600fe7e4f892197cccb6a68f3cc51204fcf96cf1"
+    },
+    "src/fusionlynx/fusionlynx_description/launch/display.launch.py": {
+      "role": "index",
+      "sha256": "1067d37ed703723f55cddae22223c9795b9a1a278541c81f0f935953563d7878",
+      "size": 7182,
+      "normalized_sha256": "1067d37ed703723f55cddae22223c9795b9a1a278541c81f0f935953563d7878"
+    },
+    "src/fusionlynx/fusionlynx_description/meshes/mecanum/back_left_wheel.STL": {
+      "role": "index",
+      "sha256": "a4c4ea965d4f622ef976f0d4890d974a937ba8d6815e7c158128b6bd6d7d12fb",
+      "size": 2206784
+    },
+    "src/fusionlynx/fusionlynx_description/meshes/mecanum/back_right_wheel.STL": {
+      "role": "index",
+      "sha256": "1921036a7def60f55d27ff5f3468be61dd4eaa85c37d3b7d8dfb42f2de1932e7",
+      "size": 2201084
+    },
+    "src/fusionlynx/fusionlynx_description/meshes/mecanum/base_link.STL": {
+      "role": "index",
+      "sha256": "808b67c40b45c3685c43a530cb9f7d405b09310a7b75ac337d21a00a181e3927",
+      "size": 3956084
+    },
+    "src/fusionlynx/fusionlynx_description/meshes/mecanum/front_left_wheel.STL": {
+      "role": "index",
+      "sha256": "da97ca3b8c5078a0d6c92ad9c170cc1b728c34e4837dd80c30dd58d97238d0de",
+      "size": 2201084
+    },
+    "src/fusionlynx/fusionlynx_description/meshes/mecanum/front_right_wheel.STL": {
+      "role": "index",
+      "sha256": "fcd39d785a5dec89b06ccb45237590188fec2e390bba40aee8c62412536c7aa1",
+      "size": 2206784
+    },
+    "src/fusionlynx/fusionlynx_description/meshes/sensor/Camera_Link.STL": {
+      "role": "index",
+      "sha256": "0f3be78426804743a3f4ade712dc6b459a39c20f1ac1e8b62f74cc53c825f621",
+      "size": 305784
+    },
+    "src/fusionlynx/fusionlynx_description/meshes/sensor/L2_Link.STL": {
+      "role": "index",
+      "sha256": "09ea899f9e204c0a10316b6b662e7527ecc91968c6547ee87a9bf51d68e65f35",
+      "size": 427584
+    },
+    "src/fusionlynx/fusionlynx_description/package.xml": {
+      "role": "index",
+      "sha256": "651375401e972cd032f5a8142426ae25115d3273ecb297a4e6d5d4dbaa41d072",
+      "size": 903,
+      "normalized_sha256": "651375401e972cd032f5a8142426ae25115d3273ecb297a4e6d5d4dbaa41d072"
+    },
+    "src/fusionlynx/fusionlynx_description/scripts/static_joint_state_publisher.py": {
+      "role": "index",
+      "sha256": "c36237f17368e6f46822e88373ae3c42267b3b01c1bfcb0e382123d4f72d8bcf",
+      "size": 4521,
+      "normalized_sha256": "c36237f17368e6f46822e88373ae3c42267b3b01c1bfcb0e382123d4f72d8bcf"
+    },
+    "src/fusionlynx/fusionlynx_description/urdf/base.xacro": {
+      "role": "index",
+      "sha256": "5dce9eb78a1718891367e62ecbe104e18726a80918157127b5893a68b305d8bc",
+      "size": 2073,
+      "normalized_sha256": "5dce9eb78a1718891367e62ecbe104e18726a80918157127b5893a68b305d8bc"
+    },
+    "src/fusionlynx/fusionlynx_description/urdf/camera.xacro": {
+      "role": "index",
+      "sha256": "b43a72704c91c8d8c19beb3075dfdee4d51e3d2f71e0d92abff2680f9cd51650",
+      "size": 651,
+      "normalized_sha256": "b43a72704c91c8d8c19beb3075dfdee4d51e3d2f71e0d92abff2680f9cd51650"
+    },
+    "src/fusionlynx/fusionlynx_description/urdf/lidar.xacro": {
+      "role": "index",
+      "sha256": "85a059fe0d52fbfcbcbedaf7d1656b5cd7963f7f5e45d27fb507b73bf187e9b3",
+      "size": 640,
+      "normalized_sha256": "85a059fe0d52fbfcbcbedaf7d1656b5cd7963f7f5e45d27fb507b73bf187e9b3"
+    },
+    "src/fusionlynx/fusionlynx_description/urdf/materials.xacro": {
+      "role": "index",
+      "sha256": "742a916521cd6d358e05a47f19bd7b3cb3233db895a2ad77bbfad5943f777af7",
+      "size": 2356,
+      "normalized_sha256": "742a916521cd6d358e05a47f19bd7b3cb3233db895a2ad77bbfad5943f777af7"
+    },
+    "src/fusionlynx/fusionlynx_description/urdf/robot.urdf.xacro": {
+      "role": "index",
+      "sha256": "b7fd5d118942878555cf882058f68fc167dc6cf4358be922b3a613f675d86a80",
+      "size": 6280,
+      "normalized_sha256": "b7fd5d118942878555cf882058f68fc167dc6cf4358be922b3a613f675d86a80"
+    },
+    "src/fusionlynx/fusionlynx_description/urdf/wheels.xacro": {
+      "role": "index",
+      "sha256": "3dcd092fdfede9541024bdf2f26e48672f0747353b1a6c2c6f2fe612311945a4",
+      "size": 1579,
+      "normalized_sha256": "3dcd092fdfede9541024bdf2f26e48672f0747353b1a6c2c6f2fe612311945a4"
+    },
+    "src/fusionlynx/fusionlynx_mapping/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "616b0b8c017dad8f5fc166fc1fa1cde463f17075f30bac1089c92cd83278c5d4",
+      "size": 250,
+      "normalized_sha256": "616b0b8c017dad8f5fc166fc1fa1cde463f17075f30bac1089c92cd83278c5d4"
+    },
+    "src/fusionlynx/fusionlynx_mapping/README.md": {
+      "role": "index",
+      "sha256": "b567a6238799dd5a2b28899a898c39f786c3eb8de5730ca7eb82d0ce75aaa65c",
+      "size": 4339,
+      "normalized_sha256": "b567a6238799dd5a2b28899a898c39f786c3eb8de5730ca7eb82d0ce75aaa65c"
+    },
+    "src/fusionlynx/fusionlynx_mapping/launch/mapping.launch.py": {
+      "role": "index",
+      "sha256": "94b6826166dc74723e25323f93b113f7b00a3241968add23d9a7d2f78a399d11",
+      "size": 5857,
+      "normalized_sha256": "94b6826166dc74723e25323f93b113f7b00a3241968add23d9a7d2f78a399d11"
+    },
+    "src/fusionlynx/fusionlynx_mapping/package.xml": {
+      "role": "index",
+      "sha256": "4a7fdaa9b19aaea887280d73405ad85520bebecc993787474b466d20c8c3cc1b",
+      "size": 533,
+      "normalized_sha256": "4a7fdaa9b19aaea887280d73405ad85520bebecc993787474b466d20c8c3cc1b"
+    },
+    "src/fusionlynx/fusionlynx_slam/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "1bec045662fe589c231884364a12bee190ed6ec81b6e5d8d78ebbeac76da0d70",
+      "size": 557,
+      "normalized_sha256": "1bec045662fe589c231884364a12bee190ed6ec81b6e5d8d78ebbeac76da0d70"
+    },
+    "src/fusionlynx/fusionlynx_slam/README.md": {
+      "role": "index",
+      "sha256": "1eb2f5ea6f1cb23c7a1df4cf869555ee0d38fcb092240bfb08f6621f249e2f74",
+      "size": 5863,
+      "normalized_sha256": "1eb2f5ea6f1cb23c7a1df4cf869555ee0d38fcb092240bfb08f6621f249e2f74"
+    },
+    "src/fusionlynx/fusionlynx_slam/config/fusionlynx_slam.yaml": {
+      "role": "index",
+      "sha256": "48ec5617862edf168c11097526dfb746400e5f98aeb22f2da8be9eff50ec7566",
+      "size": 3087,
+      "normalized_sha256": "48ec5617862edf168c11097526dfb746400e5f98aeb22f2da8be9eff50ec7566"
+    },
+    "src/fusionlynx/fusionlynx_slam/launch/fast_lio_base_test.launch.py": {
+      "role": "index",
+      "sha256": "488395e13892215cd85ee49305ba4f846982c6e01014fec6723ae33beb8e133a",
+      "size": 5174,
+      "normalized_sha256": "488395e13892215cd85ee49305ba4f846982c6e01014fec6723ae33beb8e133a"
+    },
+    "src/fusionlynx/fusionlynx_slam/launch/slam.launch.py": {
+      "role": "index",
+      "sha256": "666b3fc571e22cd783aca6dbcc41e8d99fe6a27a7abd9042d413783fda06232d",
+      "size": 6924,
+      "normalized_sha256": "666b3fc571e22cd783aca6dbcc41e8d99fe6a27a7abd9042d413783fda06232d"
+    },
+    "src/fusionlynx/fusionlynx_slam/package.xml": {
+      "role": "index",
+      "sha256": "1f305ce8719f498f00b18ec0345aabc33a762b58f19e892740bce1d331cd1685",
+      "size": 836,
+      "normalized_sha256": "1f305ce8719f498f00b18ec0345aabc33a762b58f19e892740bce1d331cd1685"
+    },
+    "src/fusionlynx/fusionlynx_slam/parameter_measurement_plan.md": {
+      "role": "index",
+      "sha256": "32d0909f68c99360647c75944b3d5ade1d3c0314a1e6a4f11b85ebcc920df843",
+      "size": 26940,
+      "normalized_sha256": "32d0909f68c99360647c75944b3d5ade1d3c0314a1e6a4f11b85ebcc920df843"
+    },
+    "src/fusionlynx/fusionlynx_slam/scripts/fast_lio_base_bridge.py": {
+      "role": "index",
+      "sha256": "e659e449c2500b9e0bdeb3eb99bf97194c79458028987f435845a43a1dce3e4b",
+      "size": 10644,
+      "normalized_sha256": "e659e449c2500b9e0bdeb3eb99bf97194c79458028987f435845a43a1dce3e4b"
+    },
+    "src/fusionlynx/fusionlynx_slam/参数测定方案.md": {
+      "role": "index",
+      "sha256": "9487b432a95eb9823c99b97d2916bae83bca04118b11a407d75542d35abb2e89",
+      "size": 24245,
+      "normalized_sha256": "9487b432a95eb9823c99b97d2916bae83bca04118b11a407d75542d35abb2e89"
+    },
+    "src/fusionlynx/state_fusion_backend/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "c5dc701746b69d05e96ead4f74051690097373d6798edbd5c2dbe1c03a89d9c2",
+      "size": 2707,
+      "normalized_sha256": "c5dc701746b69d05e96ead4f74051690097373d6798edbd5c2dbe1c03a89d9c2"
+    },
+    "src/fusionlynx/state_fusion_backend/README.md": {
+      "role": "index",
+      "sha256": "666b19b01101cd9e5c3e0c724573b450a0f176da64bf31d7c0ffd02ff29499d9",
+      "size": 7741,
+      "normalized_sha256": "666b19b01101cd9e5c3e0c724573b450a0f176da64bf31d7c0ffd02ff29499d9"
+    },
+    "src/fusionlynx/state_fusion_backend/config/state_fusion_backend.yaml": {
+      "role": "index",
+      "sha256": "2f77cad461b5bb47dc23ddb36618fd30d6a48fad74ba565ce22aeaf519b9cac7",
+      "size": 3333,
+      "normalized_sha256": "2f77cad461b5bb47dc23ddb36618fd30d6a48fad74ba565ce22aeaf519b9cac7"
+    },
+    "src/fusionlynx/state_fusion_backend/include/state_fusion_backend/factor_graph_builder.hpp": {
+      "role": "index",
+      "sha256": "7f029261ef69b6c6f420556018e63ff7aec079854ad0e2dd6fcfe9a1fe265eba",
+      "size": 2924,
+      "normalized_sha256": "7f029261ef69b6c6f420556018e63ff7aec079854ad0e2dd6fcfe9a1fe265eba"
+    },
+    "src/fusionlynx/state_fusion_backend/include/state_fusion_backend/factor_types.hpp": {
+      "role": "index",
+      "sha256": "182159f1c6b2e46ef553f2d2af41ef114f7fda19dbb7446327f3485e8dbf303e",
+      "size": 1784,
+      "normalized_sha256": "182159f1c6b2e46ef553f2d2af41ef114f7fda19dbb7446327f3485e8dbf303e"
+    },
+    "src/fusionlynx/state_fusion_backend/include/state_fusion_backend/factors.hpp": {
+      "role": "index",
+      "sha256": "c7d9dca834de7a156fb0b7bde28013ac85a714f1a72d371abb0d2ed0c8b40952",
+      "size": 2840,
+      "normalized_sha256": "c7d9dca834de7a156fb0b7bde28013ac85a714f1a72d371abb0d2ed0c8b40952"
+    },
+    "src/fusionlynx/state_fusion_backend/include/state_fusion_backend/fusion_backend.hpp": {
+      "role": "index",
+      "sha256": "13de3e6d8753bbc17948d4af622d0442e03a3cd9e9aa13086be80bfd3adabe5a",
+      "size": 7205,
+      "normalized_sha256": "13de3e6d8753bbc17948d4af622d0442e03a3cd9e9aa13086be80bfd3adabe5a"
+    },
+    "src/fusionlynx/state_fusion_backend/include/state_fusion_backend/lio_health_monitor.hpp": {
+      "role": "index",
+      "sha256": "7b9889096e2df0cc9ff9e30e9898fa2263562503d15ca8658dc9b10ac6a9c03d",
+      "size": 3849,
+      "normalized_sha256": "7b9889096e2df0cc9ff9e30e9898fa2263562503d15ca8658dc9b10ac6a9c03d"
+    },
+    "src/fusionlynx/state_fusion_backend/include/state_fusion_backend/state_fusion_backend_node.hpp": {
+      "role": "index",
+      "sha256": "83d18f028aab6d7cea993a8c7df4a16a99e20a8882c35e88c72e9193b26f84e1",
+      "size": 9273,
+      "normalized_sha256": "83d18f028aab6d7cea993a8c7df4a16a99e20a8882c35e88c72e9193b26f84e1"
+    },
+    "src/fusionlynx/state_fusion_backend/launch/fusion.launch.py": {
+      "role": "index",
+      "sha256": "2b71a6f5a422d357d6f4cb778b41181d7d0df992f0bf15978bf5bb1da7b1c2bd",
+      "size": 2168,
+      "normalized_sha256": "2b71a6f5a422d357d6f4cb778b41181d7d0df992f0bf15978bf5bb1da7b1c2bd"
+    },
+    "src/fusionlynx/state_fusion_backend/package.xml": {
+      "role": "index",
+      "sha256": "466037fe852907bbca8e6856ffee5332e7b28fd0b9f79930efbe3c28146a15ea",
+      "size": 1036,
+      "normalized_sha256": "466037fe852907bbca8e6856ffee5332e7b28fd0b9f79930efbe3c28146a15ea"
+    },
+    "src/fusionlynx/state_fusion_backend/src/factor_graph_builder.cpp": {
+      "role": "index",
+      "sha256": "2c0ecc9410303efa92afd8a7938efe61d2f64abd93eeae56749c8bf795752a90",
+      "size": 11962,
+      "normalized_sha256": "2c0ecc9410303efa92afd8a7938efe61d2f64abd93eeae56749c8bf795752a90"
+    },
+    "src/fusionlynx/state_fusion_backend/src/fusion_backend.cpp": {
+      "role": "index",
+      "sha256": "36f0e0d67d6b3e9d46aed2b50f9dd0631d391011715aae575991ed8d2859e2ba",
+      "size": 11708,
+      "normalized_sha256": "36f0e0d67d6b3e9d46aed2b50f9dd0631d391011715aae575991ed8d2859e2ba"
+    },
+    "src/fusionlynx/state_fusion_backend/src/lio_health_monitor.cpp": {
+      "role": "index",
+      "sha256": "52f8b3316d93b0d3f7c037567bf509f29ca570a20c2b3644cccc2ccfac4cf495",
+      "size": 12502,
+      "normalized_sha256": "52f8b3316d93b0d3f7c037567bf509f29ca570a20c2b3644cccc2ccfac4cf495"
+    },
+    "src/fusionlynx/state_fusion_backend/src/main.cpp": {
+      "role": "index",
+      "sha256": "a9f15a6b2c75e3d52aec95c58b8f750d799eb868f535539ef2e4bd0cd40c353e",
+      "size": 1006,
+      "normalized_sha256": "a9f15a6b2c75e3d52aec95c58b8f750d799eb868f535539ef2e4bd0cd40c353e"
+    },
+    "src/fusionlynx/state_fusion_backend/src/state_fusion_backend_node.cpp": {
+      "role": "index",
+      "sha256": "19aac4063afd86e723a4abfaf6f81c6319441ee2dbf9cf858930451fd2925c7f",
+      "size": 50834,
+      "normalized_sha256": "19aac4063afd86e723a4abfaf6f81c6319441ee2dbf9cf858930451fd2925c7f"
+    },
+    "src/fusionlynx/state_fusion_backend/test/test_fusion_backend.cpp": {
+      "role": "index",
+      "sha256": "012b14e76f35d62b83aa9aeaa3be270eb1ff63e93d1d677c494de69e1023aca8",
+      "size": 12913,
+      "normalized_sha256": "012b14e76f35d62b83aa9aeaa3be270eb1ff63e93d1d677c494de69e1023aca8"
+    },
+    "src/fusionlynx/state_fusion_backend/test/test_lio_health_monitor.cpp": {
+      "role": "index",
+      "sha256": "9b88bf681bf75e26cd8296b180fd2b43f1addfa61cde94f7570bd5fea696a290",
+      "size": 4635,
+      "normalized_sha256": "9b88bf681bf75e26cd8296b180fd2b43f1addfa61cde94f7570bd5fea696a290"
+    },
+    "src/motioncore-sdk-v1.0.0/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "671bb11f75146350c1d152f2e619c40912f884ff760fea1c62fcd9f9c9f492cb",
+      "size": 1309,
+      "normalized_sha256": "671bb11f75146350c1d152f2e619c40912f884ff760fea1c62fcd9f9c9f492cb"
+    },
+    "src/motioncore-sdk-v1.0.0/LICENSE": {
+      "role": "index",
+      "sha256": "e8512994044cd2399b34edc1e61862e08de9a99391004e0881bd6155f344be6c",
+      "size": 1068,
+      "normalized_sha256": "e8512994044cd2399b34edc1e61862e08de9a99391004e0881bd6155f344be6c"
+    },
+    "src/motioncore-sdk-v1.0.0/README.md": {
+      "role": "index",
+      "sha256": "68b6c285f79a86c413bd5ed8c493e5ebc7723d6e2a554900422f08a8824b4e1b",
+      "size": 3084,
+      "normalized_sha256": "68b6c285f79a86c413bd5ed8c493e5ebc7723d6e2a554900422f08a8824b4e1b"
+    },
+    "src/motioncore-sdk-v1.0.0/README_zh.md": {
+      "role": "index",
+      "sha256": "2d552f4d7ffd933bcd88d8ac5e1e007c12499ff37dc9c034187bbfac98c295e5",
+      "size": 2258,
+      "normalized_sha256": "2d552f4d7ffd933bcd88d8ac5e1e007c12499ff37dc9c034187bbfac98c295e5"
+    },
+    "src/motioncore-sdk-v1.0.0/cpp/src/client.cpp": {
+      "role": "index",
+      "sha256": "b4b074c3e063872c91fa6475dab765146624f5776e367609a5348f6dccdcd65a",
+      "size": 4896,
+      "normalized_sha256": "b4b074c3e063872c91fa6475dab765146624f5776e367609a5348f6dccdcd65a"
+    },
+    "src/motioncore-sdk-v1.0.0/cpp/src/frame.cpp": {
+      "role": "index",
+      "sha256": "528a997f724faa74fbe51ff1fbfeff9f349cc34b3ee18d2f6f005dfe5765dd4b",
+      "size": 503,
+      "normalized_sha256": "528a997f724faa74fbe51ff1fbfeff9f349cc34b3ee18d2f6f005dfe5765dd4b"
+    },
+    "src/motioncore-sdk-v1.0.0/cpp/src/transport.cpp": {
+      "role": "index",
+      "sha256": "2ecfbaa55ef31189e371e66f5b5a4797ec5e761625500985c1da505e34971672",
+      "size": 1203,
+      "normalized_sha256": "2ecfbaa55ef31189e371e66f5b5a4797ec5e761625500985c1da505e34971672"
+    },
+    "src/motioncore-sdk-v1.0.0/examples/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "7374d9cc94fffa6a1c9031f52e337ec1a4c648f9cc825f502e3ec6f07bce9d8b",
+      "size": 109,
+      "normalized_sha256": "7374d9cc94fffa6a1c9031f52e337ec1a4c648f9cc825f502e3ec6f07bce9d8b"
+    },
+    "src/motioncore-sdk-v1.0.0/examples/c/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "3554c17e9a7d53a416e5234374265f6b4f58b4c3ad1cc5a90413935df2fc4fc6",
+      "size": 121,
+      "normalized_sha256": "3554c17e9a7d53a416e5234374265f6b4f58b4c3ad1cc5a90413935df2fc4fc6"
+    },
+    "src/motioncore-sdk-v1.0.0/examples/c/main.c": {
+      "role": "index",
+      "sha256": "533b67a3e940890aaa6517407e3c40ba4426b6e50cbcc8398580cfc02684d009",
+      "size": 1846,
+      "normalized_sha256": "533b67a3e940890aaa6517407e3c40ba4426b6e50cbcc8398580cfc02684d009"
+    },
+    "src/motioncore-sdk-v1.0.0/examples/cpp/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "a3a8103ad578c0017e33ad6ed313d7c9ff931568cd3064270f90a7b3f28cd33b",
+      "size": 125,
+      "normalized_sha256": "a3a8103ad578c0017e33ad6ed313d7c9ff931568cd3064270f90a7b3f28cd33b"
+    },
+    "src/motioncore-sdk-v1.0.0/examples/cpp/main.cpp": {
+      "role": "index",
+      "sha256": "7ef0e3a336882782980cd658d770ae91909faf45ef6a77f89fe3e7984c46f8d0",
+      "size": 1034,
+      "normalized_sha256": "7ef0e3a336882782980cd658d770ae91909faf45ef6a77f89fe3e7984c46f8d0"
+    },
+    "src/motioncore-sdk-v1.0.0/examples/python/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "50e9c5c6ebe587829ae3b4746569a43c0cc9733df4d05c2f10786475a949f25e",
+      "size": 54,
+      "normalized_sha256": "50e9c5c6ebe587829ae3b4746569a43c0cc9733df4d05c2f10786475a949f25e"
+    },
+    "src/motioncore-sdk-v1.0.0/examples/python/main.py": {
+      "role": "index",
+      "sha256": "4ee1e17ea47d6b5d802b00c5ed161f269403122629eb3287c82c0a7db9d15c9f",
+      "size": 1244,
+      "normalized_sha256": "4ee1e17ea47d6b5d802b00c5ed161f269403122629eb3287c82c0a7db9d15c9f"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/client.hpp": {
+      "role": "index",
+      "sha256": "1262a04abfd9a86af6bc8b738feb45936f67324087b3790d6e5bd22c04a24f08",
+      "size": 6912,
+      "normalized_sha256": "1262a04abfd9a86af6bc8b738feb45936f67324087b3790d6e5bd22c04a24f08"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/frame.hpp": {
+      "role": "index",
+      "sha256": "dbc79be0345cc8e196ca13558c5805e94b44072baf0e63e52d892848dd0f87ca",
+      "size": 2093,
+      "normalized_sha256": "dbc79be0345cc8e196ca13558c5805e94b44072baf0e63e52d892848dd0f87ca"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/mc_client.h": {
+      "role": "index",
+      "sha256": "c76fdaa75b62d5f0a018a37cb3454b010c8d0b1a7219b3006bff8b028888fa66",
+      "size": 4222,
+      "normalized_sha256": "c76fdaa75b62d5f0a018a37cb3454b010c8d0b1a7219b3006bff8b028888fa66"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/mc_frame.h": {
+      "role": "index",
+      "sha256": "d553049c4641f3c6fd8f6c6cd777233eda2f94b32763b759fb2b7db94811c67d",
+      "size": 3035,
+      "normalized_sha256": "d553049c4641f3c6fd8f6c6cd777233eda2f94b32763b759fb2b7db94811c67d"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/mc_protocol.h": {
+      "role": "index",
+      "sha256": "21d52f90b4474b784e012ea78a42004bd2e01d6be4abbb65182dba4ddae94ac5",
+      "size": 6435,
+      "normalized_sha256": "21d52f90b4474b784e012ea78a42004bd2e01d6be4abbb65182dba4ddae94ac5"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/mc_transport.h": {
+      "role": "index",
+      "sha256": "687abf0b314ec46cc811763825283967232081ef79f45890f20656206c0dd823",
+      "size": 3195,
+      "normalized_sha256": "687abf0b314ec46cc811763825283967232081ef79f45890f20656206c0dd823"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/mc_types.h": {
+      "role": "index",
+      "sha256": "13c2f2a952e1393a7b6e915995e0bb5b10b3148d66987781c144b6d9f792a6b2",
+      "size": 4032,
+      "normalized_sha256": "13c2f2a952e1393a7b6e915995e0bb5b10b3148d66987781c144b6d9f792a6b2"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/protocol.h": {
+      "role": "index",
+      "sha256": "8d4a68180f3a3a820ca91e9b9a3cc8b16b1a12ee7a9e67e29150afaf0f7ac9c1",
+      "size": 740,
+      "normalized_sha256": "8d4a68180f3a3a820ca91e9b9a3cc8b16b1a12ee7a9e67e29150afaf0f7ac9c1"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/transport.hpp": {
+      "role": "index",
+      "sha256": "2056545aa76774ac4cc5088c17e66e22b5e5ba66b325fcef4451e7bb24c09584",
+      "size": 2339,
+      "normalized_sha256": "2056545aa76774ac4cc5088c17e66e22b5e5ba66b325fcef4451e7bb24c09584"
+    },
+    "src/motioncore-sdk-v1.0.0/include/motioncore/types.hpp": {
+      "role": "index",
+      "sha256": "c86378fa7abc70890c6fd75f14fee39ee1659002b1bc8501eb7fb11dc16690be",
+      "size": 4684,
+      "normalized_sha256": "c86378fa7abc70890c6fd75f14fee39ee1659002b1bc8501eb7fb11dc16690be"
+    },
+    "src/motioncore-sdk-v1.0.0/lib/cmake/MotionCore/MotionCoreConfig.cmake": {
+      "role": "index",
+      "sha256": "6ecbccf48bab6829179b5941c2448a337a3dea7e4fa1f32bc32c294fec63530d",
+      "size": 1018,
+      "normalized_sha256": "6ecbccf48bab6829179b5941c2448a337a3dea7e4fa1f32bc32c294fec63530d"
+    },
+    "src/motioncore-sdk-v1.0.0/lib/cmake/MotionCore/MotionCoreConfigVersion.cmake": {
+      "role": "index",
+      "sha256": "d24e24c7c2c71ab63d530ea0019c625fa8b7c19fb11bd10224a4f195fb668e34",
+      "size": 2878,
+      "normalized_sha256": "d24e24c7c2c71ab63d530ea0019c625fa8b7c19fb11bd10224a4f195fb668e34"
+    },
+    "src/motioncore-sdk-v1.0.0/lib/cmake/MotionCore/MotionCoreTargets-noconfig.cmake": {
+      "role": "index",
+      "sha256": "875f2c2cd72d885500d4a8e4e2e8060d27f4145b96faa781dff05e082d4132ab",
+      "size": 856,
+      "normalized_sha256": "875f2c2cd72d885500d4a8e4e2e8060d27f4145b96faa781dff05e082d4132ab"
+    },
+    "src/motioncore-sdk-v1.0.0/lib/cmake/MotionCore/MotionCoreTargets.cmake": {
+      "role": "index",
+      "sha256": "9ab918f92260ec0ca0dd960553f4d543a6d8d5650e8251659002954cd441cffa",
+      "size": 3320,
+      "normalized_sha256": "9ab918f92260ec0ca0dd960553f4d543a6d8d5650e8251659002954cd441cffa"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/motion-control-and-teleop.zh.md": {
+      "role": "index",
+      "sha256": "202dc0454d22dc4412ec67e0f9a88de19cbd7db38516909bc1ccb1cf9d95e8ae",
+      "size": 5009,
+      "normalized_sha256": "202dc0454d22dc4412ec67e0f9a88de19cbd7db38516909bc1ccb1cf9d95e8ae"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/release/api-reference-c.md": {
+      "role": "index",
+      "sha256": "6eb939337018163adbe00cc2f7723fcc863171c8fcace6fa602f58f2d66a61bb",
+      "size": 1674,
+      "normalized_sha256": "6eb939337018163adbe00cc2f7723fcc863171c8fcace6fa602f58f2d66a61bb"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/release/api-reference-c.zh.md": {
+      "role": "index",
+      "sha256": "4565bbfd758c574eedafd08ade5b067585c7eebba4e779e6a9b6d8c1b0903ad8",
+      "size": 1421,
+      "normalized_sha256": "4565bbfd758c574eedafd08ade5b067585c7eebba4e779e6a9b6d8c1b0903ad8"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/release/api-reference-cpp.md": {
+      "role": "index",
+      "sha256": "83b7d491f1c9d963776109da4d99318f9b4c10d7978a0d7abee60e8e444af4e1",
+      "size": 1566,
+      "normalized_sha256": "83b7d491f1c9d963776109da4d99318f9b4c10d7978a0d7abee60e8e444af4e1"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/release/api-reference-cpp.zh.md": {
+      "role": "index",
+      "sha256": "6967389d3b2a30d4a559826c33f1ea98ac0a3d65ab3d810e2f733b91ef04cb3a",
+      "size": 1500,
+      "normalized_sha256": "6967389d3b2a30d4a559826c33f1ea98ac0a3d65ab3d810e2f733b91ef04cb3a"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/release/api-reference-python.md": {
+      "role": "index",
+      "sha256": "68b2b74173e465b0ea5a701376c87f4fb7a736ed7bfadc5ea7666957c1e4c341",
+      "size": 1821,
+      "normalized_sha256": "68b2b74173e465b0ea5a701376c87f4fb7a736ed7bfadc5ea7666957c1e4c341"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/release/api-reference-python.zh.md": {
+      "role": "index",
+      "sha256": "159e8f2439ea311b78191f273bf57be89dd52237a4fccdb0eb81cbf7a6ab45d2",
+      "size": 1779,
+      "normalized_sha256": "159e8f2439ea311b78191f273bf57be89dd52237a4fccdb0eb81cbf7a6ab45d2"
+    },
+    "src/motioncore-sdk-v1.0.0/share/motioncore/docs/timestamp-and-ros2-usage.md": {
+      "role": "index",
+      "sha256": "be8d21a6e42685ccbdae133f0aa46059878055bd1223e435f7fe41ba6bceca6c",
+      "size": 8420,
+      "normalized_sha256": "be8d21a6e42685ccbdae133f0aa46059878055bd1223e435f7fe41ba6bceca6c"
+    },
+    "src/unitree_lidar_ros2/CMakeLists.txt": {
+      "role": "index",
+      "sha256": "03f9ef5d2055d44985b076af2b67cb4474ab33d165cc584382e702fca90a0181",
+      "size": 2257,
+      "normalized_sha256": "03f9ef5d2055d44985b076af2b67cb4474ab33d165cc584382e702fca90a0181"
+    },
+    "src/unitree_lidar_ros2/README.md": {
+      "role": "index",
+      "sha256": "10428c955eb50f12b95a4ad35f3447ad70ce6c98dbc42b5d12aeba75ab8e1c71",
+      "size": 945,
+      "normalized_sha256": "10428c955eb50f12b95a4ad35f3447ad70ce6c98dbc42b5d12aeba75ab8e1c71"
+    },
+    "src/unitree_lidar_ros2/include/unitree_lidar_ros2.hpp": {
+      "role": "index",
+      "sha256": "2f28eeea18d807c2f4fd430a9130b23fe66637869e658b1ce84faaff2bf669b5",
+      "size": 10911,
+      "normalized_sha256": "2f28eeea18d807c2f4fd430a9130b23fe66637869e658b1ce84faaff2bf669b5"
+    },
+    "src/unitree_lidar_ros2/launch/launch.py": {
+      "role": "index",
+      "sha256": "539129c5c1ba60b63b80464efa808b29c1d6b3b5e2b904204bf04926a5688d7e",
+      "size": 3562,
+      "normalized_sha256": "539129c5c1ba60b63b80464efa808b29c1d6b3b5e2b904204bf04926a5688d7e"
+    },
+    "src/unitree_lidar_ros2/package.xml": {
+      "role": "index",
+      "sha256": "0522a502af253564c8d860f6d15af976e9dc1192dfe4c9b88657e9cef7a745b9",
+      "size": 787,
+      "normalized_sha256": "0522a502af253564c8d860f6d15af976e9dc1192dfe4c9b88657e9cef7a745b9"
+    },
+    "src/unitree_lidar_ros2/rviz/view.rviz": {
+      "role": "index",
+      "sha256": "0e949a6e2a222b2f045cf9d4b4a6dff7a07937cca497724651dae0c30190091f",
+      "size": 5964,
+      "normalized_sha256": "0e949a6e2a222b2f045cf9d4b4a6dff7a07937cca497724651dae0c30190091f"
+    },
+    "src/unitree_lidar_ros2/src/unitree_lidar_ros2_node.cpp": {
+      "role": "index",
+      "sha256": "7ad61cb722784a5cb57548495ff4b495101369be5d89f8378d61c319400d8a2c",
+      "size": 445,
+      "normalized_sha256": "7ad61cb722784a5cb57548495ff4b495101369be5d89f8378d61c319400d8a2c"
+    },
+    "tools/aoci-current/aoci": {
+      "role": "index",
+      "sha256": "498fce0d680e1f4007d393adc19fb39dd1aea1940617e1681ef5a3c7aede73d1",
+      "size": 24006782
+    },
+    "tools/mineru_mcp/README.md": {
+      "role": "index",
+      "sha256": "841ab984a69b7a89570f3298373a94d06bae2b1c52e4d0dfac8939595a39f2a6",
+      "size": 819,
+      "normalized_sha256": "841ab984a69b7a89570f3298373a94d06bae2b1c52e4d0dfac8939595a39f2a6"
+    },
+    "tools/mineru_mcp/server.py": {
+      "role": "index",
+      "sha256": "a023cefadf2385cd78a18e6abfc0b64d9233757a29b9c2b645bc1e1a9817c88e",
+      "size": 2338,
+      "normalized_sha256": "a023cefadf2385cd78a18e6abfc0b64d9233757a29b9c2b645bc1e1a9817c88e"
+    },
+    "tools/opening_defense_ppt/assets/fusionlynx_system_architecture.svg": {
+      "role": "index",
+      "sha256": "89a4891a1b4d72eded50709fd5f9618fcbb1547ecb9be3a023949a6451aec236",
+      "size": 1121629,
+      "normalized_sha256": "89a4891a1b4d72eded50709fd5f9618fcbb1547ecb9be3a023949a6451aec236"
+    },
+    "tools/opening_defense_ppt/assets/lio_health_state_machine.svg": {
+      "role": "index",
+      "sha256": "1447d955b0a2c6136ad07c0c8ece534eaa937a6c35108fb97ca365680e32fc1c",
+      "size": 8810,
+      "normalized_sha256": "1447d955b0a2c6136ad07c0c8ece534eaa937a6c35108fb97ca365680e32fc1c"
+    },
+    "tools/opening_defense_ppt/build_opening_defense_ppt.py": {
+      "role": "index",
+      "sha256": "696da0c4cde26092836368f7748e3e0d3ad548716e2d3cc798056493f76b616c",
+      "size": 45223,
+      "normalized_sha256": "696da0c4cde26092836368f7748e3e0d3ad548716e2d3cc798056493f76b616c"
+    },
+    "tools/opening_defense_ppt/imagegen_skill/SKILL.md": {
+      "role": "index",
+      "sha256": "e065be100ec2a2e04a638c5d10b9319ba259ac2ff0928cf8f2690fdc45b098ba",
+      "size": 1710,
+      "normalized_sha256": "e065be100ec2a2e04a638c5d10b9319ba259ac2ff0928cf8f2690fdc45b098ba"
+    },
+    "tools/opening_defense_ppt/imagegen_skill/prompts/cover_robot.txt": {
+      "role": "index",
+      "sha256": "3ba650ebf11a43cdba2a9137aa2959aa8a123b56b109a83beedb18892b96fee7",
+      "size": 1511,
+      "normalized_sha256": "3ba650ebf11a43cdba2a9137aa2959aa8a123b56b109a83beedb18892b96fee7"
+    },
+    "tools/opening_defense_ppt/imagegen_skill/prompts/indoor_mapping_scene.txt": {
+      "role": "index",
+      "sha256": "11e035e42761e388fcc0f964770bd3c37d7b6af16e6b145765f09f1f46309241",
+      "size": 1407,
+      "normalized_sha256": "11e035e42761e388fcc0f964770bd3c37d7b6af16e6b145765f09f1f46309241"
+    },
+    "tools/opening_defense_ppt/imagegen_skill/scripts/generate_image.py": {
+      "role": "index",
+      "sha256": "2abdb884323b90e6cb7dd40b6c1c01d471e1965ad201e670c35ee1af0c626a2b",
+      "size": 3921,
+      "normalized_sha256": "2abdb884323b90e6cb7dd40b6c1c01d471e1965ad201e670c35ee1af0c626a2b"
+    },
+    "tools/optimize_opening_ppt_roundtrip.py": {
+      "role": "index",
+      "sha256": "7a718780a2bbf049cd27b13d08d3de5d5b6d576b4bfcabeec112828b8a27b111",
+      "size": 1906,
+      "normalized_sha256": "7a718780a2bbf049cd27b13d08d3de5d5b6d576b4bfcabeec112828b8a27b111"
+    }
+  },
+  "managed_scope": {
+    "version": "managed-scope-baseline/v1",
+    "policy_identity": "c81414aa1ad20edc6cdd8c9d904678ca476240ca1a991b5d31759dcae114efd1",
+    "observe_change_policy": "review_required",
+    "budget_policy_identity": "15e9b37a6c57e9bf03c9df3d0d049eb5b9a7f5540f9d34960408114e2538a32d",
+    "budget_policy": {
+      "version": "cognition-budget-policy/v1",
+      "mode": "enforce",
+      "whole_index": {
+        "target_tokens": 200000,
+        "warning_tokens": 300000,
+        "max_tokens": 400000
+      },
+      "r": [
+        {
+          "min_c": 1,
+          "max_c": 4,
+          "target_tokens": 25,
+          "max_tokens": 50
+        },
+        {
+          "min_c": 5,
+          "max_c": 7,
+          "target_tokens": 45,
+          "max_tokens": 90
+        },
+        {
+          "min_c": 8,
+          "max_c": 8,
+          "target_tokens": 70,
+          "max_tokens": 140
+        },
+        {
+          "min_c": 9,
+          "max_c": 9,
+          "target_tokens": 90,
+          "max_tokens": 180
+        }
+      ],
+      "s": [
+        {
+          "min_c": 1,
+          "max_c": 4,
+          "target_tokens": 20,
+          "max_tokens": 40
+        },
+        {
+          "min_c": 5,
+          "max_c": 7,
+          "target_tokens": 40,
+          "max_tokens": 80
+        },
+        {
+          "min_c": 8,
+          "max_c": 8,
+          "target_tokens": 70,
+          "max_tokens": 140
+        },
+        {
+          "min_c": 9,
+          "max_c": 9,
+          "target_tokens": 100,
+          "max_tokens": 200
+        }
+      ]
+    },
+    "apply_authorization_mode": "auto"
+  }
+}
