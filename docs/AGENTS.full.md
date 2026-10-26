@@ -1,3 +1,7 @@
+> Historical reference only.
+> This file is not authoritative.
+> Follow the root `AGENTS.md` and module-level `AGENTS.md` files instead.
+
 # AGENTS.md
 
 Last updated: 2026-08-23
