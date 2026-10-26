@@ -2,9 +2,9 @@
 
 ===/home/dream/ros2_ws/===
 .gitattributes[CC5T]: F:统一文本换行、扩展名属性与二进制标记，保持跨 Linux 工作站的 Git 差异稳定 | R:code:.gitignore,code:.gitmodules | A:text=auto;*.stl binary | S:-
-.gitignore[CC5M]: F:排除构建输出、运行状态、原始实验数据和本地工具目录，同时保留轻量实验元数据 | R:code:data/README.md,code:docs/development/git_workflow.md | A:FusionLynx ROS 2 workspace policy | S:不得把 aoci.txt、aoci.meta.txt、aoci.code.txt 或 AGENTS.md 加入忽略规则，否则 scan 会静默跳过认知资产
+.gitignore[CC5M]: F:排除构建输出、运行状态、原始实验数据和本地工具目录，同时保留轻量实验元数据与 data/path 轨迹中间产物分离 | R:code:data/README.md,code:docs/development/git_workflow.md | A:FusionLynx ROS 2 workspace policy;/data/* | S:data 规则必须根锚定为 /data/*，写成裸 data/* 会让 !/data/README.md 与 !/data/manifests 失效；不得忽略 aoci.txt、aoci.meta.txt、aoci.code.txt 或 AGENTS.md，否则 scan 静默跳过认知资产
 .gitmodules[IC6T]: F:声明 FAST-LIO、Livox、ORB-SLAM3、Astra 相机和 MotionCore ROS 2 子模块及其远程地址 | R:code:src/FAST_LIO,code:src/livox_ros_driver2,code:src/orbslam3_ros,code:src/ros2_astra_camera,code:src/motioncore | A:submodule path and url | S:根仓库只记录子模块指针，外部仓库更新必须固定到已验证提交
-AGENTS.md[SG9L]: F:规定工作区范围、权威文档、ROS 2 架构契约、TF 所有权、修改边界和 AOCI 认知治理入口 | R:code:docs/architecture.md,code:docs/tf.md,code:docs/fusion.md,code:docs/slam.md,code:docs/development.md | A:state_fusion_backend;RTAB-Map;AOCI | S:state_fusion_backend 唯一拥有 odom -> base_link，RTAB-Map 唯一拥有 map -> odom，FAST-LIO 不得发布竞争性的 odom -> base_link
+AGENTS.md[SG9L]: F:规定工作区范围、权威文档、ROS 2 架构契约、TF 所有权、修改边界和 AOCI 认知治理入口 | R:code:docs/architecture.md,code:docs/tf.md,code:docs/fusion.md,code:docs/slam.md,code:docs/development.md,code:docs/development/git_workflow.md | A:state_fusion_backend;RTAB-Map;AOCI | S:state_fusion_backend 唯一拥有 odom -> base_link，RTAB-Map 唯一拥有 map -> odom，FAST-LIO 不得发布竞争性的 odom -> base_link；aoci:begin 到 aoci:end 区块由 AOCI 维护，手工编辑会在下一次 init 或维护时被覆盖
 README.md[SG7M]: F:提供 FusionLynx ROS 2 集成仓库概览、子模块获取方式和 Humble 构建入口 | R:code:AGENTS.md,code:.gitmodules,code:docs/development/git_workflow.md | A:git clone;git submodule update;colcon build | S:构建前需使用 ROS 2 Humble，并递归初始化固定版本子模块
 TODO.md[SG5S]: F:记录跨文档同步、包级 AGENTS 规则和 Research Vault 链接等待办 | R:code:AGENTS.md,code:docs/architecture.md,code:docs/development.md | A:TODO | S:-
 analyze_imu.py[KA6M]: F:读取 rosbag2 中 UniLidar 与 MotionCore IMU，统计样本量、频率、陀螺偏置和加速度模长并绘图 | R:code:scripts/motioncore_analyze_bag.py | A:main;imu_report;plot_gyro;plot_acc | S:固定读取 imu_compare_static，并只处理 /unilidar/imu 与 /motioncore/imu/data
@@ -14,6 +14,7 @@ clion_debug.sh[XV5S]: F:以 Debug、Ninja 和 compile_commands 配置执行全�
 daily_execution_checklist.md[SW7M]: F:定义固件、ROS 2、TF、融合和实验的日常优先级、核查要点与可观察完成条件 | R:code:slam_thesis_workflow.md,code:docs/architecture.md,code:docs/deployment.md | A:阶段目标 A-G;实验前检查;实验后整理 | S:-
 project-overview.md[SG7S]: F:提供项目总览和建议阅读顺序，连接稳定规则、架构、TF、融合、SLAM、部署与 Research Vault | R:code:AGENTS.md,code:docs/architecture.md,code:docs/tf.md,code:docs/fusion.md,code:docs/slam.md,code:docs/deployment.md | A:Start with;Research Vault | S:-
 slam_thesis_workflow.md[SW9L]: F:定义麦克纳姆平台多传感器同步、底盘状态估计、FAST-LIO、因子图融合、建图和论文实验主路线 | R:code:AGENTS.md,code:docs/architecture.md,code:docs/fusion.md,code:daily_execution_checklist.md | A:硬件边界;时间同步;误差模型;里程碑 | S:树莓派只做中转，主要估计与建图在 PC；两个 IMU 不得无约束混入同一输入，磁力计只作辅助诊断
+opencode.json[XE5T]: F:声明本仓库级 opencode 配置，为 AOCI 注册本地 stdio MCP 服务器并绑定仓库根 | R:code:AGENTS.md,code:aoci.txt | A:mcp.aoci;type=local;command | S:command 必须以 --repo /home/dream/ros2_ws 显式绑定仓库根；缺少该参数时 MCP 会在启动目录自动定位，可能读到错误仓库的 aoci.txt 与 .aoci 状态
 
 ===/home/dream/ros2_ws/data/===
 README.md[SG6S]: F:规定实验数据目录只保留说明和轻量元数据，并把原始数据、轨迹导出和实验记录连接到 Research Vault | R:code:scripts/export_rtabmap_trajectory.py,code:scripts/compare_trajectories_evo.py | A:data/path;Research Vault 05_Data/03_Experiment | S:-

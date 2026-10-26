@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created_at": "2026-10-04T02:15:17Z",
-  "updated_at": "2026-10-04T04:18:49Z",
+  "updated_at": "2026-10-26T11:52:46Z",
   "files": {
     ".gitattributes": {
       "role": "index",
@@ -11,9 +11,9 @@
     },
     ".gitignore": {
       "role": "index",
-      "sha256": "e59947e04a2c01ee01cd08030a566ebc3d5e7124222557d8704ae24758965019",
-      "size": 2126,
-      "normalized_sha256": "e59947e04a2c01ee01cd08030a566ebc3d5e7124222557d8704ae24758965019"
+      "sha256": "58132676f81eb971b5338dbee1870494d699d78d3e860a4a8941a077eacf2d98",
+      "size": 2127,
+      "normalized_sha256": "58132676f81eb971b5338dbee1870494d699d78d3e860a4a8941a077eacf2d98"
     },
     ".gitmodules": {
       "role": "index",
@@ -23,9 +23,9 @@
     },
     "AGENTS.md": {
       "role": "index",
-      "sha256": "ac0b22cc2c0c72a35383656ef035826b4ddb7f1cc9c946768518ac678a4f3d82",
-      "size": 18479,
-      "normalized_sha256": "ac0b22cc2c0c72a35383656ef035826b4ddb7f1cc9c946768518ac678a4f3d82"
+      "sha256": "866c9ee36b61e0c65dd3bf66defae57edfcf17a88cae573814d61fa178648ce5",
+      "size": 18562,
+      "normalized_sha256": "866c9ee36b61e0c65dd3bf66defae57edfcf17a88cae573814d61fa178648ce5"
     },
     "README.md": {
       "role": "index",
@@ -47,9 +47,9 @@
     },
     "aoci.code.txt": {
       "role": "index",
-      "sha256": "2956b3dca270ec231849c4c89546a1e506e8077851a08d7cf79e892c0266d3a6",
-      "size": 64590,
-      "normalized_sha256": "2956b3dca270ec231849c4c89546a1e506e8077851a08d7cf79e892c0266d3a6"
+      "sha256": "5f55dd50c2881f8dce21d1e9f03287e9cb9beb8000a59ec1ae615443a76200c6",
+      "size": 65239,
+      "normalized_sha256": "5f55dd50c2881f8dce21d1e9f03287e9cb9beb8000a59ec1ae615443a76200c6"
     },
     "aoci.meta.txt": {
       "role": "index",
@@ -170,6 +170,12 @@
       "sha256": "5ddbf086d9cf9e5ba68f015b66d9d7b245052bd5c86f80698a0b8642cbc76cd5",
       "size": 2127,
       "normalized_sha256": "5ddbf086d9cf9e5ba68f015b66d9d7b245052bd5c86f80698a0b8642cbc76cd5"
+    },
+    "opencode.json": {
+      "role": "index",
+      "sha256": "7afeaf1ee529c88c6a4d14f69a6895cac23268cc50660c0f0714b9aae0ec2bba",
+      "size": 254,
+      "normalized_sha256": "7afeaf1ee529c88c6a4d14f69a6895cac23268cc50660c0f0714b9aae0ec2bba"
     },
     "project-overview.md": {
       "role": "index",
@@ -836,11 +842,6 @@
       "size": 445,
       "normalized_sha256": "7ad61cb722784a5cb57548495ff4b495101369be5d89f8378d61c319400d8a2c"
     },
-    "tools/aoci-current/aoci": {
-      "role": "index",
-      "sha256": "498fce0d680e1f4007d393adc19fb39dd1aea1940617e1681ef5a3c7aede73d1",
-      "size": 24006782
-    },
     "tools/mineru_mcp/README.md": {
       "role": "index",
       "sha256": "841ab984a69b7a89570f3298373a94d06bae2b1c52e4d0dfac8939595a39f2a6",
@@ -904,7 +905,7 @@
   },
   "managed_scope": {
     "version": "managed-scope-baseline/v1",
-    "policy_identity": "c81414aa1ad20edc6cdd8c9d904678ca476240ca1a991b5d31759dcae114efd1",
+    "policy_identity": "2ee43e4fdb643c997a0f742eeeec2b47e3faadafbe2df88d206a2a2936e2d0d7",
     "observe_change_policy": "review_required",
     "budget_policy_identity": "15e9b37a6c57e9bf03c9df3d0d049eb5b9a7f5540f9d34960408114e2538a32d",
     "budget_policy": {

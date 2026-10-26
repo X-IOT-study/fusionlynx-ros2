@@ -126,6 +126,39 @@
         "created_by": "aoci-init",
         "order": 106,
         "enabled": true
+      },
+      {
+        "rule_id": "thesis-script-insert_environment_table",
+        "action": "exclude",
+        "pattern": "tools/insert_environment_table.py",
+        "pattern_kind": "file",
+        "reason": "Thesis and PPT helper script kept local; not tracked in Git",
+        "source": "user",
+        "created_by": "human",
+        "order": 200,
+        "enabled": true
+      },
+      {
+        "rule_id": "thesis-script-polish_opening_report",
+        "action": "exclude",
+        "pattern": "tools/polish_opening_report.py",
+        "pattern_kind": "file",
+        "reason": "Thesis and PPT helper script kept local; not tracked in Git",
+        "source": "user",
+        "created_by": "human",
+        "order": 200,
+        "enabled": true
+      },
+      {
+        "rule_id": "aoci-runtime-binary",
+        "action": "exclude",
+        "pattern": "tools/aoci-current/aoci",
+        "pattern_kind": "file",
+        "reason": "Local AOCI runtime binary staging path; not repository source",
+        "source": "user",
+        "created_by": "human",
+        "order": 210,
+        "enabled": true
       }
     ]
   },
