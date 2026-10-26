@@ -86,8 +86,11 @@ Testing/
 
 # Design files
 design/
+.venv*
+/data/*
 CLAUDE*
 TASKS.md
+paper_rewriting*
 
 *.tar.gz
 
