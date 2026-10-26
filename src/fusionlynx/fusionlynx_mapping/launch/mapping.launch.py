@@ -16,6 +16,38 @@ def generate_launch_description():
                 description="RTAB-Map database path.",
             ),
             DeclareLaunchArgument(
+                "localization",
+                default_value="false",
+                description=(
+                    "Load the existing RTAB-Map database without adding "
+                    "new map nodes."
+                ),
+            ),
+            DeclareLaunchArgument(
+                "initial_pose",
+                default_value="",
+                description=(
+                    "Initial pose in the map frame: "
+                    "'x y z roll pitch yaw' or quaternion form."
+                ),
+            ),
+            DeclareLaunchArgument(
+                "rtabmap_args",
+                default_value=(
+                    "--Reg/Strategy 1 "
+                    "--RGBD/ProximityBySpace true "
+                    "--RGBD/ProximityByTime false "
+                    "--RGBD/NeighborLinkRefining true "
+                    "--RGBD/ProximityPathMaxNeighbors 1 "
+                    "--RGBD/ProximityGlobalScanMap true "
+                    "--Icp/CorrespondenceRatio 0.1"
+                ),
+                description=(
+                    "RTAB-Map parameters and flags. The default enables "
+                    "ICP-based LiDAR proximity loop closure."
+                ),
+            ),
+            DeclareLaunchArgument(
                 "approx_sync",
                 default_value="true",
                 description="Use approximate synchronization for odom and cloud.",
@@ -99,7 +131,9 @@ def generate_launch_description():
                     "rviz": "false",
                     "rtabmap_viz": LaunchConfiguration("rtabmap_viz"),
                     "database_path": LaunchConfiguration("database_path"),
-                    "rtabmap_args": "",
+                    "localization": LaunchConfiguration("localization"),
+                    "initial_pose": LaunchConfiguration("initial_pose"),
+                    "rtabmap_args": LaunchConfiguration("rtabmap_args"),
                 }.items(),
             ),
         ]

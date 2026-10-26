@@ -25,6 +25,35 @@ def generate_launch_description():
         "mapping_database_path",
         default_value="~/.ros/fusionlynx_fast_lio_base_test.db",
     )
+    localization = DeclareLaunchArgument(
+        "localization",
+        default_value="false",
+        description=(
+            "Use the existing RTAB-Map database for localization instead "
+            "of extending the map."
+        ),
+    )
+    initial_pose = DeclareLaunchArgument(
+        "initial_pose",
+        default_value="",
+        description=(
+            "Initial robot pose in the map frame: "
+            "'x y z roll pitch yaw' or quaternion form."
+        ),
+    )
+    rtabmap_args = DeclareLaunchArgument(
+        "rtabmap_args",
+        default_value=(
+            "--Reg/Strategy 1 "
+            "--RGBD/ProximityBySpace true "
+            "--RGBD/ProximityByTime false "
+            "--RGBD/NeighborLinkRefining true "
+            "--RGBD/ProximityPathMaxNeighbors 1 "
+            "--RGBD/ProximityGlobalScanMap true "
+            "--Icp/CorrespondenceRatio 0.1"
+        ),
+        description="RTAB-Map parameters and command-line flags.",
+    )
     fast_lio_config_path = DeclareLaunchArgument(
         "fast_lio_config_path",
         default_value=PathJoinSubstitution(
@@ -91,6 +120,9 @@ def generate_launch_description():
         condition=IfCondition(LaunchConfiguration("use_mapping")),
         launch_arguments={
             "database_path": LaunchConfiguration("mapping_database_path"),
+            "localization": LaunchConfiguration("localization"),
+            "initial_pose": LaunchConfiguration("initial_pose"),
+            "rtabmap_args": LaunchConfiguration("rtabmap_args"),
             "odom_topic": "/fast_lio/base_odom",
             "frame_id": "base_link",
             "scan_cloud_topic": "/fast_lio/cloud_registered_body",
@@ -103,6 +135,9 @@ def generate_launch_description():
             use_rviz,
             use_mapping,
             mapping_database_path,
+            localization,
+            initial_pose,
+            rtabmap_args,
             fast_lio_config_path,
             fast_lio_config_file,
             tf_lookup_timeout_sec,

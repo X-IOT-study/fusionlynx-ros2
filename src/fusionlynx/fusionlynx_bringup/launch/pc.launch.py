@@ -38,11 +38,6 @@ def generate_launch_description():
         default_value="true",
         description="Launch the RTAB-Map backend.",
     )
-    run_loop_closure = DeclareLaunchArgument(
-        "run_loop_closure",
-        default_value="false",
-        description="Launch the reserved loop-closure interface.",
-    )
     fusion_profile = DeclareLaunchArgument(
         "fusion_profile",
         default_value="",
@@ -60,8 +55,37 @@ def generate_launch_description():
     )
     mapping_database_path = DeclareLaunchArgument(
         "mapping_database_path",
-        default_value="~/.ros/fusionlynx_rtabmap.db",
+        default_value="/tmp/fusionlynx_$(date +%Y%m%d_%H%M$S).db",
         description="RTAB-Map database path.",
+    )
+    localization = DeclareLaunchArgument(
+        "localization",
+        default_value="false",
+        description=(
+            "Use the existing RTAB-Map database for localization instead "
+            "of extending the map."
+        ),
+    )
+    initial_pose = DeclareLaunchArgument(
+        "initial_pose",
+        default_value="",
+        description=(
+            "Initial robot pose in the map frame: "
+            "'x y z roll pitch yaw' or quaternion form."
+        ),
+    )
+    rtabmap_args = DeclareLaunchArgument(
+        "rtabmap_args",
+        default_value=(
+            "--Reg/Strategy 1 "
+            "--RGBD/ProximityBySpace true "
+            "--RGBD/ProximityByTime false "
+            "--RGBD/NeighborLinkRefining true "
+            "--RGBD/ProximityPathMaxNeighbors 1 "
+            "--RGBD/ProximityGlobalScanMap true "
+            "--Icp/CorrespondenceRatio 0.1"
+        ),
+        description="RTAB-Map parameters and command-line flags.",
     )
 
     description_launch = IncludeLaunchDescription(
@@ -94,8 +118,10 @@ def generate_launch_description():
             "run_fast_lio": LaunchConfiguration("run_fast_lio"),
             "run_state_fusion": LaunchConfiguration("run_state_fusion"),
             "run_mapping": LaunchConfiguration("run_mapping"),
-            "run_loop_closure": LaunchConfiguration("run_loop_closure"),
             "mapping_database_path": LaunchConfiguration("mapping_database_path"),
+            "localization": LaunchConfiguration("localization"),
+            "initial_pose": LaunchConfiguration("initial_pose"),
+            "rtabmap_args": LaunchConfiguration("rtabmap_args"),
             "fusion_profile": LaunchConfiguration("fusion_profile"),
             "wheel_odom_topic": LaunchConfiguration("wheel_odom_topic"),
             "fast_lio_odom_topic": LaunchConfiguration("fast_lio_odom_topic"),
@@ -114,11 +140,13 @@ def generate_launch_description():
             run_fast_lio,
             run_state_fusion,
             run_mapping,
-        run_loop_closure,
-        fusion_profile,
-        wheel_odom_topic,
-        fast_lio_odom_topic,
-        mapping_database_path,
+            fusion_profile,
+            wheel_odom_topic,
+            fast_lio_odom_topic,
+            mapping_database_path,
+            localization,
+            initial_pose,
+            rtabmap_args,
             description_launch,
             delayed_slam_launch,
         ]

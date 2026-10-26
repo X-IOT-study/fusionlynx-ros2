@@ -20,7 +20,6 @@
   <exec_depend>fast_lio</exec_depend>
   <exec_depend>state_fusion_backend</exec_depend>
   <exec_depend>fusionlynx_mapping</exec_depend>
-  <exec_depend>fusionlynx_loop_closure</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

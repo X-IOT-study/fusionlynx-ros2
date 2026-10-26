@@ -25,7 +25,7 @@ fusionlynx_mapping
 ```
 
 The package boundary is intentional. `fusionlynx_slam` is the system entry
-point, while the estimation, mapping, and future loop-closure responsibilities
+point, while the estimation and RTAB-Map mapping/localization responsibilities
 remain independently testable.
 
 ## Launch
@@ -44,7 +44,7 @@ Useful arguments:
 ```bash
 ros2 launch fusionlynx_slam slam.launch.py \
   run_fast_lio:=false \
-  run_loop_closure:=false
+  run_state_fusion:=false
 
 ros2 launch fusionlynx_slam slam.launch.py \
   fast_lio_config_file:=unilidar_L2.yaml \
@@ -52,6 +52,15 @@ ros2 launch fusionlynx_slam slam.launch.py \
 
 ros2 launch fusionlynx_slam slam.launch.py \
   run_mapping:=false
+```
+
+To localize against a saved RTAB-Map LiDAR database:
+
+```bash
+ros2 launch fusionlynx_slam slam.launch.py \
+  mapping_database_path:=/absolute/path/fusionlynx_lidar_map.db \
+  localization:=true \
+  initial_pose:="x y z roll pitch yaw"
 ```
 
 ## FAST-LIO to base_link validation
@@ -127,10 +136,10 @@ They are not the final `odom -> base_link` TF authority and its local map is
 not treated as the final global map. The default RTAB-Map wrapper consumes the
 deskewed `/fast_lio/cloud_registered_body`, fused `/odom`, and the robot TF
 tree; it owns the formal
-mapping/database path and future `map -> odom` optimization. The
+mapping/database path, ICP loop closure, localization, and `map -> odom`. The
 `fusionlynx_mapping` package is only the RTAB-Map integration layer; it does
-not contain a second handwritten mapping implementation. Loop closure and
-global optimization remain outside `state_fusion_backend`.
+not contain a second handwritten mapping implementation. Mapping and
+localization remain outside `state_fusion_backend`.
 
 The mature mapping dependency is `rtabmap_launch` from
 `ros-humble-rtabmap-ros`. It must be installed before the default launch can
@@ -141,6 +150,11 @@ should not be expected to carry identical header timestamps. The default
 synchronization interval is `0.10 s`, with
 per-topic and synchronization queues of `30`; these are launch arguments of
 `fusionlynx_mapping/mapping.launch.py`.
+
+The wrapper's `database_path` and `localization` arguments must be used
+together when restarting on an existing map. A saved `.pcd` or exported TUM/CSV
+trajectory is useful for inspection, but it does not contain the RTAB-Map
+working-memory graph and scan records needed for localization.
 
 The top-level launch forces FAST-LIO's `publish.tf_en` to `false`. Therefore
 the expected dynamic TF is only `odom -> base_link`; FAST-LIO still publishes

@@ -28,6 +28,21 @@ fusionlynx_slam
     RTAB-Map -> map -> odom
 ```
 
+To restart on an existing RTAB-Map LiDAR map, use localization mode
+explicitly:
+
+```bash
+ros2 launch fusionlynx_bringup pc.launch.py \
+  mapping_database_path:=/absolute/path/fusionlynx_lidar_map.db \
+  localization:=true \
+  initial_pose:="x y z roll pitch yaw"
+```
+
+`mapping_database_path` alone does not load the database as a fixed map. With
+`localization:=true`, RTAB-Map opens the existing graph with incremental memory
+disabled and publishes the `map -> odom` correction while
+`state_fusion_backend` continues to publish `odom -> base_link`.
+
 FAST-LIO's standalone RViz is disabled. The FusionLynx description RViz is the
 only RViz window started by this launch.
 

@@ -10,9 +10,8 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    # Modification: 2026-08-21, WenSheng Xu.
-    # Reason: Provide one reproducible system entry point while keeping
-    # FAST-LIO, fusion, mapping, and loop closure as separate packages.
+    # Provide one reproducible system entry point while keeping FAST-LIO,
+    # fusion, and RTAB-Map integration as separate packages.
     system_share = get_package_share_directory("fusionlynx_slam")
     default_system_params = os.path.join(
         system_share, "config", "fusionlynx_slam.yaml"
@@ -39,11 +38,6 @@ def generate_launch_description():
         default_value="true",
         description="Start the RTAB-Map backend through fusionlynx_mapping",
     )
-    run_loop_closure = DeclareLaunchArgument(
-        "run_loop_closure",
-        default_value="false",
-        description="Start the reserved loop-closure interface package",
-    )
     system_params = DeclareLaunchArgument(
         "system_params_file",
         default_value=default_system_params,
@@ -67,7 +61,36 @@ def generate_launch_description():
     mapping_database_path = DeclareLaunchArgument(
         "mapping_database_path",
         default_value="~/.ros/fusionlynx_rtabmap.db",
-        description="RTAB-Map database path",
+        description="RTAB-Map database path.",
+    )
+    localization = DeclareLaunchArgument(
+        "localization",
+        default_value="false",
+        description=(
+            "Use the existing RTAB-Map database for localization instead "
+            "of extending the map."
+        ),
+    )
+    initial_pose = DeclareLaunchArgument(
+        "initial_pose",
+        default_value="",
+        description=(
+            "Initial robot pose in the map frame: "
+            "'x y z roll pitch yaw' or quaternion form."
+        ),
+    )
+    rtabmap_args = DeclareLaunchArgument(
+        "rtabmap_args",
+        default_value=(
+            "--Reg/Strategy 1 "
+            "--RGBD/ProximityBySpace true "
+            "--RGBD/ProximityByTime false "
+            "--RGBD/NeighborLinkRefining true "
+            "--RGBD/ProximityPathMaxNeighbors 1 "
+            "--RGBD/ProximityGlobalScanMap true "
+            "--Icp/CorrespondenceRatio 0.1"
+        ),
+        description="RTAB-Map parameters and command-line flags.",
     )
     fast_lio_config_path = DeclareLaunchArgument(
         "fast_lio_config_path",
@@ -140,20 +163,10 @@ def generate_launch_description():
         condition=IfCondition(LaunchConfiguration("run_mapping")),
         launch_arguments={
             "database_path": LaunchConfiguration("mapping_database_path"),
+            "localization": LaunchConfiguration("localization"),
+            "initial_pose": LaunchConfiguration("initial_pose"),
+            "rtabmap_args": LaunchConfiguration("rtabmap_args"),
         }.items(),
-    )
-
-    loop_closure_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            PathJoinSubstitution(
-                [
-                    FindPackageShare("fusionlynx_loop_closure"),
-                    "launch",
-                    "loop_closure.launch.py",
-                ]
-            )
-        ),
-        condition=IfCondition(LaunchConfiguration("run_loop_closure")),
     )
 
     return LaunchDescription(
@@ -161,12 +174,14 @@ def generate_launch_description():
             run_fast_lio,
             run_state_fusion,
             run_mapping,
-            run_loop_closure,
             system_params,
             fusion_profile,
             wheel_odom_topic,
             fast_lio_odom_topic,
             mapping_database_path,
+            localization,
+            initial_pose,
+            rtabmap_args,
             fast_lio_config_path,
             fast_lio_config_file,
             fast_lio_rviz,
@@ -174,6 +189,5 @@ def generate_launch_description():
             fast_lio_launch,
             fusion_launch,
             mapping_launch,
-            loop_closure_launch,
         ]
     )
