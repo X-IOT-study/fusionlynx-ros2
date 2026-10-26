@@ -223,7 +223,9 @@
       }
     ]
   },
-  "installed_agents": [],
+  "installed_agents": [
+    "opencode"
+  ],
   "automation": {
     "mode": "auto"
   },
