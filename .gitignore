@@ -164,3 +164,12 @@ tmp_*
 # editor/tool-generated lock files here.
 /package-lock.json
 /src/package-lock.json
+
+# Local agent state, review output, and configuration backups.
+/.codebuddy/
+/review_out/
+/AGENTS.md.backup.*
+
+# Thesis-document helpers kept local and intentionally excluded from Git.
+/tools/insert_environment_table.py
+/tools/polish_opening_report.py
