@@ -3,6 +3,7 @@ import subprocess
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -66,7 +67,8 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         arguments=['-d', rviz_config_file],
-        output='log'
+        output='log',
+        condition=IfCondition(LaunchConfiguration('rviz')),
     )
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -77,6 +79,7 @@ def generate_launch_description():
                 'Keep false when fusionlynx_description is running.'
             ),
         ),
+        DeclareLaunchArgument("rviz", default_value="false", description="Launch RViz2 with the UniLidar view."),
         node1,
         rviz_node,
     ])
