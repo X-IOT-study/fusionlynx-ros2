@@ -500,8 +500,6 @@ def main() -> int:
     manifest_path = output_root / "manifests" / f"{run_id}.json"
     analysis_path = bag_path / "topic_stats.json"
     command = ["ros2", "bag", "record", "-o", str(bag_path), "--storage", args.storage]
-    if args.duration > 0.0:
-        command += ["--max-bag-duration", str(args.duration)]
     if args.compression_mode != "none":
         command += ["--compression-mode", args.compression_mode, "--compression-format", args.compression_format]
     command += selected_topics
@@ -588,7 +586,25 @@ def main() -> int:
     old_sigint = signal.signal(signal.SIGINT, stop_recording)
     old_sigterm = signal.signal(signal.SIGTERM, stop_recording)
     try:
-        return_code = process.wait()
+        if args.duration > 0.0:
+            deadline = time.monotonic() + args.duration
+            while time.monotonic() < deadline and process.poll() is None:
+                time.sleep(min(0.2, max(deadline - time.monotonic(), 0.0)))
+            if process.poll() is None:
+                try:
+                    os.killpg(process.pid, signal.SIGINT)
+                except ProcessLookupError:
+                    pass
+            try:
+                return_code = process.wait(timeout=10.0)
+            except subprocess.TimeoutExpired:
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                return_code = process.wait()
+        else:
+            return_code = process.wait()
     finally:
         signal.signal(signal.SIGINT, old_sigint)
         signal.signal(signal.SIGTERM, old_sigterm)

@@ -42,6 +42,26 @@ def _terminate_group(process: subprocess.Popen[str] | None, signum: int) -> None
         pass
 
 
+def _wait_for_topic(topic: str, timeout_s: float) -> bool:
+    deadline = time.monotonic() + max(timeout_s, 0.0)
+    while time.monotonic() < deadline:
+        remaining = max(deadline - time.monotonic(), 0.1)
+        try:
+            result = subprocess.run(
+                ["ros2", "topic", "echo", "--no-daemon", topic, "--once"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=min(10.0, remaining),
+                check=False,
+            )
+        except subprocess.TimeoutExpired:
+            continue
+        if result.returncode == 0:
+            return True
+        time.sleep(0.5)
+    return False
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Launch FusionLynx, record a rosbag, and export RTAB-Map poses."
@@ -62,6 +82,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--repeat-index", type=int, default=1)
     parser.add_argument("--duration", type=float, default=60.0)
     parser.add_argument("--start-delay", type=float, default=5.0)
+    parser.add_argument("--topic-timeout", type=float, default=60.0)
     parser.add_argument("--bag-output-root", type=Path, default=DEFAULT_BAG_ROOT)
     parser.add_argument("--database-dir", type=Path, default=DEFAULT_DB_DIR)
     parser.add_argument("--path-output-dir", type=Path, default=DEFAULT_PATH_DIR)
@@ -232,6 +253,16 @@ def _run_one(args: argparse.Namespace, profile: str) -> int:
                 )
             time.sleep(min(0.25, max(deadline - time.monotonic(), 0.0)))
 
+        required_topics = ["/odom"]
+        if profile in "CDEFG":
+            required_topics += ["/motioncore/wheel_odom", "/fast_lio/odom"]
+        for topic in required_topics:
+            print(f"[{profile}] waiting for {topic}", flush=True)
+            if not _wait_for_topic(topic, args.topic_timeout):
+                raise RuntimeError(
+                    f"topic not ready within {args.topic_timeout:.1f}s: {topic}"
+                )
+
         collector_stream = collector_log.open("w", encoding="utf-8")
         collector_process = subprocess.Popen(
             collector_command,
@@ -325,6 +356,9 @@ def main() -> int:
         return 2
     if args.start_delay < 0.0:
         print("--start-delay must be >= 0", file=sys.stderr)
+        return 2
+    if args.topic_timeout < 0.0:
+        print("--topic-timeout must be >= 0", file=sys.stderr)
         return 2
     if not COLLECTOR.is_file() or not EXPORTER.is_file():
         print("required workspace scripts are missing", file=sys.stderr)
