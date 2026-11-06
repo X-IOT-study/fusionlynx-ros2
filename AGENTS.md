@@ -119,6 +119,50 @@ Package-specific rules under `src/` are discovered by path. Start with
 `src/fusionlynx/AGENTS.md` for FusionLynx package changes, then consult the
 package README and the topic document named above.
 
+## 8. Agent delegation and collaboration
+
+### 8.1 General rules
+
+- The main Claude Code agent is responsible for task understanding, planning, delegation, integration, and final reporting.
+- Delegate specialized work to the most relevant available subagents when the task benefits from independent analysis or parallel investigation.
+- Do not invoke every available subagent mechanically. Select agents according to task scope and expected contribution.
+- Read-only investigation and review agents must not modify project files.
+- Implementation agents may modify only files within the approved task scope.
+- Do not claim that an agent was invoked unless the delegation actually occurred and its result was received.
+
+### 8.2 Recommended delegation
+
+- `codebase-explorer`: inspect repository structure, trace code paths, identify dependencies, and locate relevant documentation.
+- `debugger`: investigate concrete defects, runtime failures, and inconsistent behavior.
+- `test-engineer`: design and execute focused tests for changed behavior.
+- `code-reviewer`: independently review implementation correctness, maintainability, and regression risks.
+- `security-auditor`: inspect relevant security-sensitive code, permissions, resource handling, and trust boundaries.
+- `documentation-expert`: review documentation consistency when architecture or interfaces change.
+- `embedded-systems`: assist with MCU firmware, peripheral drivers, memory constraints, and embedded runtime behavior.
+- `c-pro`: assist with C language correctness, memory management, and low-level system programming.
+
+### 8.3 Development workflow
+
+For substantial implementation tasks:
+
+1. Explore the relevant packages, documentation, and existing implementation before proposing changes.
+2. Establish the task scope, affected interfaces, constraints, and acceptance criteria.
+3. Delegate independent investigation when it can materially improve understanding.
+4. Implement only within the approved scope.
+5. Ask `test-engineer` to validate changed behavior with focused tests.
+6. Ask `code-reviewer` to independently inspect the resulting changes.
+7. Involve `security-auditor` when the task touches security-sensitive boundaries.
+8. Resolve confirmed findings and report unresolved issues explicitly.
+9. Follow the existing Git staging and commit policy. Never commit before user acceptance.
+
+### 8.4 Delegation boundaries
+
+- Subagents must follow this file and all applicable package-level `AGENTS.md` instructions.
+- A subagent's findings are evidence to evaluate, not automatic authorization to change architecture or public contracts.
+- Parallel agents must not independently modify the same files unless explicitly coordinated.
+- Preserve the existing AOCI workflow and do not allow agent prompts or recommendations to override its machine-issued plans, guides, or safety boundaries.
+- Codex and other external coding tools are separate execution systems; do not claim they were invoked unless an actual integration or tool call was used.
+
 <!-- aoci:begin -->
 ## AOCI 仓库认知
 
@@ -162,6 +206,8 @@ Entry 的语义必须来自模型对真实证据的理解。不得仅依据路�
 2. 仓库已经存在可用的完整索引，但当前Run没有可靠完整认知时，先调用 `aoci_rules`，再调用 `aoci_overview`。
 
    完整认知仍可靠时直接复用。局部不确定本身不要求机械重读系统全貌。
+
+   可靠与否由机器事实决定，不由主观感觉决定：同一Agent Run内已完整加载过本仓库索引并确认交付，且此后`index_sha256`、`entry_count`与`cognition_receipt.mcp_service_version`均未变化，工具也未报告Dirty、Stale、未决Recovery或第三方正式字节冲突，即为可复用。新Agent Run、上下文压缩恢复、索引或服务版本变化，或上述任一状态出现，必须重读。无法给出这些事实时按未加载处理；不得仅凭“感觉不确定”重读系统全貌，也不得在事实未变时用重读替代判断。
 
    本Run从已知Host上下文压缩恢复时（包括宿主注入的压缩摘要），必须把此前模型认知视为不可靠。压缩handoff不得保留或摘要正式Whole-Index，也不得保留或摘要任何Overview Header、Entry、Chunk、Challenge或Attestation正文；只能保留安全续接所需的receipt身份、未完成write或Recovery状态，以及立即重载指令。复制进handoff的Whole-Index语义或receipt不能证明恢复后模型的当前认知可靠。若当前上下文已无法可靠保留运行合同，先调用 `aoci_rules`。继续业务任务前，使用 `refresh_reasons=["context_compaction"]` 和新的 `refresh_event_id` 调用普通完整Whole-Index `aoci_overview`（不设置 `check_only` 或设为false）；不得使用 `check_only` 或认知probe。原样跟随每个 `next_cursor` 直到 `completed=true`，确认交付，并且只基于新交付正文提交一次Attestation。完成这次新的完整传输后，即使Attestation为partial或fail也消费该generation，并按既有合同继续source-bound任务，不再自动调用第二次Overview。
 
@@ -222,3 +268,46 @@ Entry 的语义必须来自模型对真实证据的理解。不得仅依据路�
 
 不预加载、不猜测，也不自行重建这些专项流程。平台调用方式、请求格式、批次上限、审批规则、索引格式细节和恢复步骤由对应Guide、工具说明、模型Prompt和CLI帮助按需提供。
 <!-- aoci:end -->
+
+
+=== 范围约束(约束你提议什么修法,不约束你找什么)===
+凡是这里真的有问题,都要报——包括听起来罕见但本项目确实会产生的情况。
+然后把修法收在范围内:
+1. 这不是一篇安全攻防论文。可以校验,禁止过度防御。除非本项目另有说明,默认操作者是
+   自己机器上的合作者;如果它真有对手,它会写明,以那个范围为准。
+2. 不要加哈希/校验和/指纹,除非它替代了一个实质上更贵的操作,并且结果会改变下一步做什么。
+3. 禁止防御性脚手架:不为这里不会发生的情况加 feature flag、迁移框架、兼容层、包装层。
+4. 禁止钻牛角尖:冷门编码、符号链接竞态、RTL 文本、毫秒级竞态一律不在范围内,
+   除非该情况经由本项目**受支持的用法**可达——它的文档示例、它公开的接口、它真实的
+   数据。可达即可,不需要你复现出来;但"理论上构造得出"不算。
+5. 该判断的地方就判断,不要换成评分表、检查清单,或对已经定论的东西再跑一遍校验。
+6. 以上都不覆盖用户、本项目自己的约定、或更高优先级规则明确要求的安全、迁移、校验与
+   审阅。那些是被要求的,是活儿本身,不算范围外。
+7. 交付物的文字不是答辩记录。成立的就直说;注意事项集中到专门一节
+   (Limitations、已知问题),别在每段末尾都缀一句免责;更不要把指令**或过程**
+   写进成品:「别提 X」意味着 X 不存在(不是写「我们不讨论 X」);中间报错、
+   被放弃的方案、改稿痕迹同样不是内容。围绕最强的结果组织——论文是发布会,
+   不是工作汇报。不占优的数字,是取舍就说成取舍,不是就平实陈述,都不写成认输;
+   数字本身照样留在表里。
+8. 推进本身是交付的一部分。几个方案都合理时,选一个并写明取舍——只有分歧
+   真的大、或选错难回头时才升级为提问。不挡住目标的细节,记下来接着走,
+   不是先停下解决它。为了不选错而停在原地,本身就是选错。
+9. 不留任何生成/纠偏痕迹:最终产出(代码、注释、docstring、commit message、
+   PR 描述、总结)只呈现正确的最终结果,当作一开始就是这么写的——不提中间报错、
+   试错纠偏、被放弃的方案、"为什么没做 X";也不出现 AI 辅助的标记,比如
+   "Generated by / Co-authored-by: Claude/Codex" 署名、模型腔过渡语
+   ("值得注意的是"、"综上所述"、"首先...其次...最后")、"以下是..."式开场白,
+   措辞详略贴合项目和文档已有风格。
+已经见过的形状,供你校准。是例子不是清单——一个真问题不会因为"长得像其中一条"就被驳回:
+  H  为了比对两个表格的差异,给每一行都算哈希——直接比单元格就能回答
+  H  写下一堆校验和文件,而没有任何代码会去读它们
+  E  给一个没有用户、没有部署的应用做账号安全加固
+  R  用一整夜对自己的补丁反复审计,而功能一行没写
+  R  一个对任何提交都给不通过的审阅者
+  O  一层守卫的理由是上一层守卫,而不是需求
+另有两种长得像上面、但不是的。这些要报:
+  ✓  用摘要比对来跳过重读一个你已经有的大文件
+  ✓  本项目自己的文档示例就会产生的那种"听起来罕见"的输入
+跑任何检查之前先回答:这次运行会检测出什么具体的失败?真出现了我下一步会做什么不同的事?
+答不上来就别跑。
+对的就说对。不要为了交差硬找问题。
