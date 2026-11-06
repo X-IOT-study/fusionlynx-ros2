@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created_at": "2026-10-26T11:57:42Z",
-  "updated_at": "2026-10-26T12:13:25Z",
+  "updated_at": "2026-11-06T08:13:34Z",
   "files": {
     ".gitattributes": {
       "role": "index",
@@ -11,21 +11,27 @@
     },
     ".gitignore": {
       "role": "index",
-      "sha256": "58132676f81eb971b5338dbee1870494d699d78d3e860a4a8941a077eacf2d98",
-      "size": 2127,
-      "normalized_sha256": "58132676f81eb971b5338dbee1870494d699d78d3e860a4a8941a077eacf2d98"
+      "sha256": "abbbbd4025b2d7f267361909a09549807e7f41b21cc1dc81c32f640427543a15",
+      "size": 2379,
+      "normalized_sha256": "abbbbd4025b2d7f267361909a09549807e7f41b21cc1dc81c32f640427543a15"
     },
     ".gitmodules": {
       "role": "index",
-      "sha256": "9d3e6bba1976dcf8f9e6b1bcbe9a01dbbe5b9ec27d8238726d7761b382bf4152",
-      "size": 565,
-      "normalized_sha256": "9d3e6bba1976dcf8f9e6b1bcbe9a01dbbe5b9ec27d8238726d7761b382bf4152"
+      "sha256": "fe16cef9b40e6538522b2ca1c6a494b3d79293acd84af4f1d7425c2d0b7c86f3",
+      "size": 581,
+      "normalized_sha256": "fe16cef9b40e6538522b2ca1c6a494b3d79293acd84af4f1d7425c2d0b7c86f3"
+    },
+    ".mcp.json": {
+      "role": "index",
+      "sha256": "36011d3932c7aad1ebecccf2faf7733c746629711a91e97cce3c1425986f3179",
+      "size": 164,
+      "normalized_sha256": "36011d3932c7aad1ebecccf2faf7733c746629711a91e97cce3c1425986f3179"
     },
     "AGENTS.md": {
       "role": "index",
-      "sha256": "866c9ee36b61e0c65dd3bf66defae57edfcf17a88cae573814d61fa178648ce5",
-      "size": 18562,
-      "normalized_sha256": "866c9ee36b61e0c65dd3bf66defae57edfcf17a88cae573814d61fa178648ce5"
+      "sha256": "10e06bc7bddff5bb8d916940fc202f3a490c577e1f3b5b4cd534a141f8bcc40b",
+      "size": 25829,
+      "normalized_sha256": "10e06bc7bddff5bb8d916940fc202f3a490c577e1f3b5b4cd534a141f8bcc40b"
     },
     "README.md": {
       "role": "index",
@@ -47,9 +53,9 @@
     },
     "aoci.code.txt": {
       "role": "index",
-      "sha256": "8aae9f275ec00ace1ede364364f7ae2bce07f3808f7d2ee971cdbd57654785e1",
-      "size": 65808,
-      "normalized_sha256": "8aae9f275ec00ace1ede364364f7ae2bce07f3808f7d2ee971cdbd57654785e1"
+      "sha256": "2927621b2c52771f10777ab909886603ae0b32204f8a30c078a940ace1ebfda5",
+      "size": 67001,
+      "normalized_sha256": "2927621b2c52771f10777ab909886603ae0b32204f8a30c078a940ace1ebfda5"
     },
     "aoci.meta.txt": {
       "role": "index",
@@ -191,9 +197,9 @@
     },
     "scripts/collect_fusion_test_bag.py": {
       "role": "index",
-      "sha256": "b894b69f4390dce9017cfa12c39606e9a51a5def2e5cd7f2797aa8deaedfb25a",
-      "size": 23791,
-      "normalized_sha256": "b894b69f4390dce9017cfa12c39606e9a51a5def2e5cd7f2797aa8deaedfb25a"
+      "sha256": "d126e3cec3cc0e7f66edc8ca32bdd8781c64aa36354efdb1155c49122971c744",
+      "size": 24456,
+      "normalized_sha256": "d126e3cec3cc0e7f66edc8ca32bdd8781c64aa36354efdb1155c49122971c744"
     },
     "scripts/compare_trajectories_evo.py": {
       "role": "index",
@@ -233,9 +239,9 @@
     },
     "scripts/run_fusion_profile_experiment.py": {
       "role": "index",
-      "sha256": "9adf827c9938025fcfd7a59914a2920e9d4dac327a9be2cd2bc3f3dde970445c",
-      "size": 12141,
-      "normalized_sha256": "9adf827c9938025fcfd7a59914a2920e9d4dac327a9be2cd2bc3f3dde970445c"
+      "sha256": "9bf6b237141f7fd19d39a48318a3aea9c5e1f5c3891f002ba8172b14f33bbefb",
+      "size": 13444,
+      "normalized_sha256": "9bf6b237141f7fd19d39a48318a3aea9c5e1f5c3891f002ba8172b14f33bbefb"
     },
     "scripts/templates/bag_quality.csv": {
       "role": "index",
@@ -281,9 +287,9 @@
     },
     "src/fusionlynx/fusionlynx_bringup/launch/pc.launch.py": {
       "role": "index",
-      "sha256": "76b479269bab01f26bca3b51cef23968fbe661ed9c25ac03473847eb6fe415ea",
-      "size": 5307,
-      "normalized_sha256": "76b479269bab01f26bca3b51cef23968fbe661ed9c25ac03473847eb6fe415ea"
+      "sha256": "d1f4e163464fc73dc440de0f07f45d06f2f8b27a933f1d755d63f05cb4f15304",
+      "size": 5382,
+      "normalized_sha256": "d1f4e163464fc73dc440de0f07f45d06f2f8b27a933f1d755d63f05cb4f15304"
     },
     "src/fusionlynx/fusionlynx_bringup/package.xml": {
       "role": "index",
@@ -820,9 +826,9 @@
     },
     "src/unitree_lidar_ros2/launch/launch.py": {
       "role": "index",
-      "sha256": "539129c5c1ba60b63b80464efa808b29c1d6b3b5e2b904204bf04926a5688d7e",
-      "size": 3562,
-      "normalized_sha256": "539129c5c1ba60b63b80464efa808b29c1d6b3b5e2b904204bf04926a5688d7e"
+      "sha256": "dcabc890a263a9e2c698380498eb50772afaf3c4502ca603b8903ee51a24bd8b",
+      "size": 3779,
+      "normalized_sha256": "dcabc890a263a9e2c698380498eb50772afaf3c4502ca603b8903ee51a24bd8b"
     },
     "src/unitree_lidar_ros2/package.xml": {
       "role": "index",
