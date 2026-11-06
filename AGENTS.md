@@ -207,8 +207,6 @@ Entry 的语义必须来自模型对真实证据的理解。不得仅依据路�
 
    完整认知仍可靠时直接复用。局部不确定本身不要求机械重读系统全貌。
 
-   可靠与否由机器事实决定，不由主观感觉决定：同一Agent Run内已完整加载过本仓库索引并确认交付，且此后`index_sha256`、`entry_count`与`cognition_receipt.mcp_service_version`均未变化，工具也未报告Dirty、Stale、未决Recovery或第三方正式字节冲突，即为可复用。新Agent Run、上下文压缩恢复、索引或服务版本变化，或上述任一状态出现，必须重读。无法给出这些事实时按未加载处理；不得仅凭“感觉不确定”重读系统全貌，也不得在事实未变时用重读替代判断。
-
    本Run从已知Host上下文压缩恢复时（包括宿主注入的压缩摘要），必须把此前模型认知视为不可靠。压缩handoff不得保留或摘要正式Whole-Index，也不得保留或摘要任何Overview Header、Entry、Chunk、Challenge或Attestation正文；只能保留安全续接所需的receipt身份、未完成write或Recovery状态，以及立即重载指令。复制进handoff的Whole-Index语义或receipt不能证明恢复后模型的当前认知可靠。若当前上下文已无法可靠保留运行合同，先调用 `aoci_rules`。继续业务任务前，使用 `refresh_reasons=["context_compaction"]` 和新的 `refresh_event_id` 调用普通完整Whole-Index `aoci_overview`（不设置 `check_only` 或设为false）；不得使用 `check_only` 或认知probe。原样跟随每个 `next_cursor` 直到 `completed=true`，确认交付，并且只基于新交付正文提交一次Attestation。完成这次新的完整传输后，即使Attestation为partial或fail也消费该generation，并按既有合同继续source-bound任务，不再自动调用第二次Overview。
 
    AOCI可以针对 `context_compaction`、项目 `cognition_refresh_threshold` 下的机器 `semantic_threshold` 或主要 `phase_transition` 提供checkpoint与认知状态事实。只需要这些紧凑事实时使用 `check_only=true`；这些事实只向Agent提供建议，不替模型决定是否需要系统全貌。
