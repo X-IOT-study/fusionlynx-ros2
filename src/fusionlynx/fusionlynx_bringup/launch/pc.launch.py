@@ -1,5 +1,7 @@
 """Launch the FusionLynx PC-side model, fusion, and mapping stack."""
 
+from datetime import datetime
+
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -13,6 +15,7 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    default_db = datetime.now().strftime("/tmp/fusionlynx_%Y%m%d_%H%M%S.db")
     use_rviz = DeclareLaunchArgument(
         "use_rviz",
         default_value="true",
@@ -55,7 +58,7 @@ def generate_launch_description():
     )
     mapping_database_path = DeclareLaunchArgument(
         "mapping_database_path",
-        default_value="/tmp/fusionlynx_$(date +%Y%m%d_%H%M$S).db",
+        default_value=default_db,
         description="RTAB-Map database path.",
     )
     localization = DeclareLaunchArgument(
