@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "aoci": {
+      "type": "stdio",
+      "command": "/usr/local/bin/aoci",
+      "args": ["--repo", "/home/dream/ros2_ws", "mcp"]
+    }
+  }
+}
