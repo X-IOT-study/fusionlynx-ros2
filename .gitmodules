@@ -1,10 +1,10 @@
 [submodule "src/FAST_LIO"]
 	path = src/FAST_LIO
-	url = https://github.com/Ericsii/FAST_LIO.git
+	url = https://github.com/X-IOT-study/FAST_LIO_ROS2.git
 
 [submodule "src/livox_ros_driver2"]
 	path = src/livox_ros_driver2
-	url = https://github.com/Livox-SDK/livox_ros_driver2.git
+	url = https://github.com/X-IOT-study/livox_ros_driver2.git
 
 [submodule "src/orbslam3_ros"]
 	path = src/orbslam3_ros
@@ -12,7 +12,7 @@
 
 [submodule "src/ros2_astra_camera"]
 	path = src/ros2_astra_camera
-	url = https://github.com/orbbec/ros2_astra_camera.git
+	url = https://github.com/X-IOT-study/ros2_astra_camera.git
 
 [submodule "src/motioncore"]
 	path = src/motioncore
