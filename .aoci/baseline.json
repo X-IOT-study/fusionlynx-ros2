@@ -1,8 +1,13 @@
 {
   "version": 1,
   "created_at": "2026-10-26T11:57:42Z",
-  "updated_at": "2026-11-06T08:13:34Z",
+  "updated_at": "2026-11-06T08:52:32Z",
   "files": {
+    ".claude/settings.json": {
+      "sha256": "79e2b2f370b0e275e126a061d864b44cebc82bb56b041e238349443f96240447",
+      "size": 265,
+      "normalized_sha256": "79e2b2f370b0e275e126a061d864b44cebc82bb56b041e238349443f96240447"
+    },
     ".gitattributes": {
       "role": "index",
       "sha256": "9bba0e386f6a78010cfec296984bdf91b78f62774a56b407c660fd6c606afd3e",
@@ -28,10 +33,9 @@
       "normalized_sha256": "36011d3932c7aad1ebecccf2faf7733c746629711a91e97cce3c1425986f3179"
     },
     "AGENTS.md": {
-      "role": "index",
-      "sha256": "10e06bc7bddff5bb8d916940fc202f3a490c577e1f3b5b4cd534a141f8bcc40b",
-      "size": 25829,
-      "normalized_sha256": "10e06bc7bddff5bb8d916940fc202f3a490c577e1f3b5b4cd534a141f8bcc40b"
+      "sha256": "6a9508515d1ecba203865e2a17f49cf6e00f4785aea9021ee533b78c8593fba1",
+      "size": 25230,
+      "normalized_sha256": "6a9508515d1ecba203865e2a17f49cf6e00f4785aea9021ee533b78c8593fba1"
     },
     "README.md": {
       "role": "index",
@@ -53,9 +57,9 @@
     },
     "aoci.code.txt": {
       "role": "index",
-      "sha256": "2927621b2c52771f10777ab909886603ae0b32204f8a30c078a940ace1ebfda5",
-      "size": 67001,
-      "normalized_sha256": "2927621b2c52771f10777ab909886603ae0b32204f8a30c078a940ace1ebfda5"
+      "sha256": "e79b8939084c9c939499852f6291fd136bcc5e3b234bb25a995d759d738743c9",
+      "size": 67784,
+      "normalized_sha256": "e79b8939084c9c939499852f6291fd136bcc5e3b234bb25a995d759d738743c9"
     },
     "aoci.meta.txt": {
       "role": "index",
@@ -113,9 +117,9 @@
     },
     "docs/deployment.md": {
       "role": "index",
-      "sha256": "d3134cb4218e4ea5dd10f6cc5fcd53504d20e04d9eba38f4d5c0bda920edf318",
-      "size": 2039,
-      "normalized_sha256": "d3134cb4218e4ea5dd10f6cc5fcd53504d20e04d9eba38f4d5c0bda920edf318"
+      "sha256": "72771e3ba20f1ad33273e311e9d76140e71f0dbc9f3202a0027a6f9773b0ed62",
+      "size": 2235,
+      "normalized_sha256": "72771e3ba20f1ad33273e311e9d76140e71f0dbc9f3202a0027a6f9773b0ed62"
     },
     "docs/development.md": {
       "role": "index",
@@ -131,21 +135,21 @@
     },
     "docs/fusion.md": {
       "role": "index",
-      "sha256": "e8452cd54bea268acebcd8e8156feb61e2019ad3a482d8c343c223f4da8045ad",
-      "size": 1962,
-      "normalized_sha256": "e8452cd54bea268acebcd8e8156feb61e2019ad3a482d8c343c223f4da8045ad"
+      "sha256": "3c68ab6949d3e910601402a7023f8738a4206849e370516511c0e37b47026cc8",
+      "size": 2094,
+      "normalized_sha256": "3c68ab6949d3e910601402a7023f8738a4206849e370516511c0e37b47026cc8"
     },
     "docs/fusionlynx_lio_logging.md": {
       "role": "index",
-      "sha256": "5b4d6d6c88571c619d9624b7bf5fac2e0982dc35b21b74cccb77bd806c7e98ad",
-      "size": 3197,
-      "normalized_sha256": "5b4d6d6c88571c619d9624b7bf5fac2e0982dc35b21b74cccb77bd806c7e98ad"
+      "sha256": "b43760e2f8b8c6e098fe64aeff2563fc988e91d4696956120a1f17aa33549bdb",
+      "size": 3736,
+      "normalized_sha256": "b43760e2f8b8c6e098fe64aeff2563fc988e91d4696956120a1f17aa33549bdb"
     },
     "docs/slam.md": {
       "role": "index",
-      "sha256": "55d50001e56e0de09c00083d88a2b8ed216aa115f28f23875d2ec57291a4332e",
-      "size": 1660,
-      "normalized_sha256": "55d50001e56e0de09c00083d88a2b8ed216aa115f28f23875d2ec57291a4332e"
+      "sha256": "f6fece2bdcc4d13aa5ec3a342971c6db3ff5d0d268e1a1c4bf5d0a8a843c71dc",
+      "size": 1711,
+      "normalized_sha256": "f6fece2bdcc4d13aa5ec3a342971c6db3ff5d0d268e1a1c4bf5d0a8a843c71dc"
     },
     "docs/tf.md": {
       "role": "index",
@@ -155,9 +159,9 @@
     },
     "docs/vault/2026-08-23-rtabmap-moving-map-timestamp.md": {
       "role": "index",
-      "sha256": "34d47c1ee794049e0026f407772561d48cbc48f881a66df30ca7acec05967ad5",
-      "size": 3015,
-      "normalized_sha256": "34d47c1ee794049e0026f407772561d48cbc48f881a66df30ca7acec05967ad5"
+      "sha256": "fd34ff5d5af8e784fd3a70eaf8c6f09ebb4a0ab5be2864c080a02a345ff6a6c8",
+      "size": 3060,
+      "normalized_sha256": "fd34ff5d5af8e784fd3a70eaf8c6f09ebb4a0ab5be2864c080a02a345ff6a6c8"
     },
     "docs/vault/2026-08-23-state-fusion-lio-logging.md": {
       "role": "index",
@@ -490,9 +494,9 @@
     },
     "src/fusionlynx/state_fusion_backend/README.md": {
       "role": "index",
-      "sha256": "666b19b01101cd9e5c3e0c724573b450a0f176da64bf31d7c0ffd02ff29499d9",
-      "size": 7741,
-      "normalized_sha256": "666b19b01101cd9e5c3e0c724573b450a0f176da64bf31d7c0ffd02ff29499d9"
+      "sha256": "510de326456302587a2539ce059f8972aaeda60583be3f1d08103c80386508e3",
+      "size": 8321,
+      "normalized_sha256": "510de326456302587a2539ce059f8972aaeda60583be3f1d08103c80386508e3"
     },
     "src/fusionlynx/state_fusion_backend/config/state_fusion_backend.yaml": {
       "role": "index",
@@ -802,9 +806,9 @@
     },
     "src/motioncore-sdk-v1.0.0/share/motioncore/docs/timestamp-and-ros2-usage.md": {
       "role": "index",
-      "sha256": "be8d21a6e42685ccbdae133f0aa46059878055bd1223e435f7fe41ba6bceca6c",
-      "size": 8420,
-      "normalized_sha256": "be8d21a6e42685ccbdae133f0aa46059878055bd1223e435f7fe41ba6bceca6c"
+      "sha256": "979b21ab634d12279ccc97a00890288146be3cdf6ab82b03a2d4032db1229dc0",
+      "size": 8478,
+      "normalized_sha256": "979b21ab634d12279ccc97a00890288146be3cdf6ab82b03a2d4032db1229dc0"
     },
     "src/unitree_lidar_ros2/CMakeLists.txt": {
       "role": "index",

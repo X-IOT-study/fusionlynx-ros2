@@ -224,7 +224,8 @@
     ]
   },
   "installed_agents": [
-    "opencode"
+    "opencode",
+    "claude"
   ],
   "automation": {
     "mode": "auto"
