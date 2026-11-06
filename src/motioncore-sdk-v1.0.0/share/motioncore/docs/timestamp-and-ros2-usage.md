@@ -291,7 +291,6 @@ ros_stamp = ros_anchor + (device_stamp - device_anchor)
 ### 一致的地方
 
 - `Timestamp` / `MeasurementHeader` 的时间语义一致
-- `send_time_sync()` / `sendTimeSync()` 都是纳秒输入
 - `request_data()` / `requestData()` 都存在
 - `set_motion()` / `setMotion()` 都存在
 - `reset_state()` / `resetState()` 都存在
@@ -301,6 +300,7 @@ ros_stamp = ros_anchor + (device_stamp - device_anchor)
 
 - Python `send_time_sync()` / `send_heartbeat()` 返回的是**payload**，要再配合 `write_frame()` 发送
 - C++ `sendTimeSync()` / `sendHeartbeat()` 是直接发送
+- Python `send_time_sync()` 接收 `Timestamp`（其 `.value` 为纳秒），C++ `sendTimeSync()` 接收纳秒整数
 - `motioncore::MotionCommand` 和 Python `MotionCommand` 的字段声明顺序不同，跨语言请用**命名字段**，不要依赖位置参数
 - `setMotor()` / `setCarRun()` 不是当前 release 里的实现，不应该再当作现成 API 使用
 - `mc_client_connect()` / `mc_client_disconnect()`、`mc_decode_heartbeat_response()`、`mc_decode_time_sync_response()` 不是当前 C core 的实现

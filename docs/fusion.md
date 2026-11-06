@@ -31,6 +31,9 @@ WARN: DEGRADED and RECOVERING
 ERROR: FAILED, timeout, and unrecoverable tracking loss
 ```
 
+These transitions require `use_lio_health: true` (Vault profiles E–G); the
+default profile D does not run LIO health evaluation.
+
 High-rate information belongs in `/motioncore/diagnostics`. Debug the failing
 boundary in this order:
 

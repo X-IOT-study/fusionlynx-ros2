@@ -53,13 +53,16 @@ new absolute prior at every fixed-lag update.
   heading factor is created.
 - Static detection requires wheel motion and IMU gyro thresholds to remain
   satisfied for `static_min_duration`.
-- During a confirmed stop, LIO covariance is enlarged and a finite-covariance
-  pose anchor is held at the stop-entry estimate; the current Pose3-only graph
-  also keeps the relative planar motion prior active. An explicit zero-velocity
+- When `use_static_anchor` is enabled (profiles F and G), a confirmed stop
+  enlarges LIO covariance and holds a finite-covariance pose anchor at the
+  stop-entry estimate. The relative planar motion prior remains active when
+  `use_planar_prior` is enabled (not in profile G). An explicit zero-velocity
   factor is reserved for the future IMU-preintegration state.
-- `DEGRADED` keeps the LIO factor with enlarged covariance and Huber protection.
-- `FAILED` omits only the LIO factor; the fixed-lag graph continues with Wheel,
-  the planar motion prior, and fallback pose observability.
+- `DEGRADED` keeps the LIO factor with enlarged covariance; the configured
+  robust kernel applies (Huber for profiles E–G).
+- `FAILED` omits only the LIO factor. In the health-enabled profiles the
+  fixed-lag graph continues with the enabled fallback factors: Wheel and the
+  planar prior in profiles E and F, Wheel only in profile G.
 - Recovery enters `RECOVERING`, aligns the first stable LIO pose to the current
   fused state, and only then lets the recovered LIO pose re-enter normally.
 
@@ -92,10 +95,12 @@ The logging policy and fields are documented in
 
 The callbacks only validate and enqueue measurements. A single timer-owned
 `process_pending()` path selects the next monotonic event and is the only
-place allowed to update GTSAM or publish the fused odometry. Profiles C-G use
-FAST-LIO measurement timestamps as the primary state clock and attach the
-latest causal wheel sample at or before that timestamp. Profiles A and B
-process their only enabled source directly.
+place allowed to update GTSAM or publish graph-fused odometry. A separate
+wheel-prediction timer also publishes `/odom` and `odom -> base_link` for the
+wheel-only profile A, and for profiles C–G while FAST-LIO is timed out.
+Profiles C–G use FAST-LIO measurement timestamps as the primary state clock
+and attach the latest causal wheel sample at or before that timestamp.
+Profiles A and B process their only enabled source directly.
 
 When FAST-LIO is absent or its steady receive age exceeds `sensor_timeout`,
 profiles C-G advance on wheel timestamps and allow wheel prediction output.
@@ -109,28 +114,30 @@ relative LIO factors resume.
 
 The output stamp remains the selected measurement timestamp. Receive time is
 used only by the watchdog, so network delay is not silently converted into a
-new measurement time. Samples that arrive outside `reorder_window`, are
-future-dated beyond `max_future_stamp`, or would move the cross-sensor event
-clock backwards are rejected.
+new measurement time. Samples that arrive outside `reorder_window` or would
+move the cross-sensor event clock backwards are rejected. Wheel samples
+future-dated beyond `max_future_stamp` are also rejected; FAST-LIO samples
+have no future-stamp guard.
 
 ## Fusion profiles
 
 `fusion_profile` implements the Vault `config_fusion_matrix`:
 
-| Profile | Wheel | FAST-LIO | LIO health | Planar prior | Kernel |
-| --- | ---: | ---: | ---: | ---: | --- |
-| A | yes | no | no | no | Gaussian |
-| B | no | yes | no | no | Gaussian |
-| C | yes | yes | no | yes | Gaussian |
-| D | yes | yes | no | yes | Huber |
-| E | yes | yes | yes | yes | Huber |
-| F | yes | yes | yes | yes | Huber + static anchor |
-| G | yes | yes | yes | no | Huber + health |
+| Profile | Wheel | FAST-LIO | LIO health | Planar prior | Static anchor | Kernel |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| A | yes | no | no | no | no | Gaussian |
+| B | no | yes | no | no | no | Gaussian |
+| C | yes | yes | no | yes | no | Gaussian |
+| D | yes | yes | no | yes | no | Huber |
+| E | yes | yes | yes | yes | no | Huber |
+| F | yes | yes | yes | yes | yes | Huber |
+| G | yes | yes | yes | no | yes | Huber |
 
-Use `fusion_profile:=A` through `G` for an experiment override. Leave it
-unset to use the individual switches in YAML (`default`/`custom` semantics).
-The launch layer also accepts explicit `wheel_odom_topic` and
-`fast_lio_odom_topic` overrides.
+Use `fusion_profile:=A` through `G` for an experiment override. The shipped
+YAML sets `fusion_profile: D`; set `fusion_profile:=default` or
+`fusion_profile:=custom` explicitly to use the individual switches in YAML.
+Leaving the launch argument empty keeps the YAML value. The launch layer also
+accepts explicit `wheel_odom_topic` and `fast_lio_odom_topic` overrides.
 
 Wheel samples more than `max_future_stamp` ahead of the ROS clock are rejected.
 This is a guard against a broken upstream timestamp mapping; it is not a

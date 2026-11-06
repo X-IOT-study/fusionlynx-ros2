@@ -55,6 +55,10 @@ ros2 launch fusionlynx_slam slam.launch.py
 ros2 launch fusionlynx_mapping mapping.launch.py
 ```
 
+`slam.launch.py` does not start `robot_state_publisher` or
+`fusionlynx_description`. Start the description first so the static
+`base_link -> lidar_link` and `base_link -> body` transforms exist.
+
 Do not alter integrated bringup to hide a subsystem defect.
 
 ## Runtime checks

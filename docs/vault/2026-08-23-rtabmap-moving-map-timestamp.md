@@ -43,7 +43,8 @@ wheel 原始编码器、wheel odom 和部分 `/odom` 时间戳领先当前 ROS �
   `/fast_lio/cloud_registered_body` 是去畸变后的 body-frame 当前扫描，避免
   机器人旋转时把单帧内部运动畸变写入地图。
 - `robot_description` 增加 `base_link -> body` 静态 TF，使用
-  `state_fusion_backend` 中 body 与 base 的固定外参。FAST-LIO的
+  `fusionlynx_description/config/robot_params.yaml` 中的
+  `fast_lio_body_xyz` / `fast_lio_body_rpy`。FAST-LIO 的
   `/fast_lio/odom` 观测位姿使用 `camera_init -> lidar_link`，融合节点使用
   `T_lidar_base` 转换到最终 base 状态。不得把
   `/fast_lio/cloud_registered` 或 `/fast_lio/local_map` 再按 `/odom` 变换，

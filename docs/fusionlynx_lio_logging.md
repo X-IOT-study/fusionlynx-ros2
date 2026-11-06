@@ -29,6 +29,12 @@ HEALTHY -> DEGRADED -> FAILED
 检测 LIO 接收间隔。超时判断不再使用 FAST-LIO 与 Wheel 的消息时间戳差值，
 避免不同传感器时间域或传输延迟造成伪超时。
 
+状态图只表示主要路径。`check_timeout()` 和 `observe()` 中的无效时间间隔可
+以从任何状态直接进入 `FAILED`；`RECOVERING` 也可能因新的降权指标回到
+`DEGRADED`，或因连续异常再次进入 `FAILED`。LIO 健康评估仅在
+`use_lio_health: true` 时运行（Vault profile E–G）；默认 profile D 和
+profile A–C 不产生这些状态转换日志。
+
 ## 等级约定
 
 | 等级 | 触发条件 | 含义 |
@@ -59,9 +65,11 @@ imu_consistency
 mag_consistency
 ```
 
-超时记录还包含 `receive_age`、`sensor_timeout`、最新 LIO 消息时间戳和
-节点当前时间。这样可以区分“消息头时间正常但节点没有收到数据”和“消息
-时间戳本身与其他传感器不在同一时间域”。
+watchdog 超时记录还包含 `receive_age`、`sensor_timeout`、最新 LIO 消息
+时间戳和节点当前时间；这些字段只由 `check_timeout()` 路径产生。`observe()`
+另外会拒绝相邻 FAST-LIO 消息头时间间隔 `dt <= 0` 或 `dt > sensor_timeout`
+的观测，并以 `reason=stale or invalid interval` 直接进入 `FAILED`；该路径
+只输出标准状态转换字段。
 
 这些字段应能够直接对应健康监视器的判断和因子图决策。特别是：
 

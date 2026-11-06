@@ -44,9 +44,9 @@ ros2 launch fusionlynx_bringup pc.launch.py \
   initial_pose:="x y z roll pitch yaw"
 ```
 
-`database_path` selects the SQLite file; it does not select mapping versus
-localization. The database must contain scans matching the current LiDAR
-input contract. PCD and TUM/CSV trajectories are analysis outputs and cannot
+`mapping_database_path` (forwarded to RTAB-Map as `database_path`) selects the
+SQLite file; it does not select mapping versus localization. The database must
+contain scans matching the current LiDAR input contract. PCD and TUM/CSV trajectories are analysis outputs and cannot
 replace the RTAB-Map graph database.
 
 Keep RTAB-Map integration inside `fusionlynx_mapping`.
