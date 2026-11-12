@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+# ============================================================
+# ros2_ws pre-push 护栏
+# ------------------------------------------------------------
+# 目的：拦住"直接推 main"和"推到公开远程的论文内容"。
+#
+# main 是受保护分支：只接受已验证状态（AGENTS.md §4 / git_workflow §4）。
+# 正常工作流：
+#   1. 在 feature/ fix/ refactor/ experiment/ 分支上开发
+#   2. 推送分支 → 在 GitHub 开 PR
+#   3. PR 通过审查后合并到 main
+#
+# 绕过（仅在确有必要时）：
+#   ALLOW_MAIN_PUSH=1 git push origin main
+# ============================================================
+set -uo pipefail
+
+RED='\033[0;31m'; YEL='\033[0;33m'; GRN='\033[0;32m'; NC='\033[0m'
+fail() { printf "${RED}✗ %s${NC}\n" "$*" >&2; exit 1; }
+warn() { printf "${YEL}⚠ %s${NC}\n" "$*" >&2; }
+ok()   { printf "${GRN}✓ %s${NC}\n" "$*" >&2; }
+
+REMOTE="$1"
+URL="$2"
+
+echo "── pre-push 护栏：推送到 ${REMOTE} ──" >&2
+
+# ---------- 1. 检查是否有论文内容混进将要推送的提交 ----------
+# 读 stdin: <local ref> <local sha> <remote ref> <remote sha> 每行一个
+PAPER_LEAK=""
+while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
+  # 删分支时 local sha 是全 0
+  if [ "$LOCAL_SHA" = "0000000000000000000000000000000000000000" ]; then
+    continue
+  fi
+  # 计算要推送的范围
+  if [ "$REMOTE_SHA" = "0000000000000000000000000000000000000000" ]; then
+    RANGE="$LOCAL_SHA"
+    FILES=$(git ls-tree -r --name-only "$LOCAL_SHA" 2>/dev/null)
+  else
+    RANGE="${REMOTE_SHA}..${LOCAL_SHA}"
+    FILES=$(git diff --name-only "$RANGE" 2>/dev/null)
+  fi
+
+  LEAK=$(printf '%s\n' "$FILES" | grep -E '^paper_rewriting' || true)
+  if [ -n "$LEAK" ]; then
+    PAPER_LEAK="${PAPER_LEAK}${LOCAL_REF}:\n${LEAK}\n"
+  fi
+done
+
+if [ -n "$PAPER_LEAK" ]; then
+  printf "${RED}✗ 将要推送的提交含论文内容：${NC}\n" >&2
+  printf "%b" "$PAPER_LEAK" >&2
+  echo "" >&2
+  echo "本仓库（fusionlynx-ros2）是 PUBLIC，论文必须留在私有仓库：" >&2
+  echo "  X-IOT-study/fusionlynx-thesis" >&2
+  echo "" >&2
+  echo "如果历史里已经有论文文件，需要从历史中移除：" >&2
+  echo "  git filter-repo --path paper_rewriting_output --invert-paths" >&2
+  fail "推送被拒绝"
+fi
+ok "论文隔离检查通过"
+
+# ---------- 2. 禁止直接推 main ----------
+if [ "${ALLOW_MAIN_PUSH:-0}" = "1" ]; then
+  warn "ALLOW_MAIN_PUSH=1 已设置，允许推 main"
+else
+  CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")
+  if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ]; then
+    printf "${RED}✗ 不允许直接推 %s${NC}\n" "$CURRENT_BRANCH" >&2
+    echo "" >&2
+    echo "main 只接受已验证的集成状态（AGENTS.md §4）。" >&2
+    echo "正常流程：" >&2
+    echo "  git switch -c feature/<area>-<name>" >&2
+    echo "  git add <白名单文件>" >&2
+    echo "  git commit -m 'feat(<scope>): ...'" >&2
+    echo "  git push -u origin feature/<area>-<name>" >&2
+    echo "  gh pr create --base main" >&2
+    echo "" >&2
+    echo "确需直接推：ALLOW_MAIN_PUSH=1 git push origin main" >&2
+    fail "推送被拒绝"
+  fi
+  ok "分支检查通过（当前 ${CURRENT_BRANCH}）"
+fi
+
+# ---------- 3. 未提交改动提醒 ----------
+if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+  warn "工作区有未提交改动（不影响推送，但请确认符合预期）"
+fi
+
+echo "" >&2
+ok "pre-push 检查通过"
+exit 0
