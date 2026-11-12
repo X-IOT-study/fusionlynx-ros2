@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+# ============================================================
+# ros2_ws pre-commit 护栏
+# ------------------------------------------------------------
+# 对应 docs/development/git_workflow.md 与 AGENTS.md §4 的硬规则。
+# 安装方式（仓库已配 core.hooksPath=.githooks）：
+#   git config core.hooksPath .githooks
+#
+# 设计原则：宁可挡住提交，也不让违规进入历史。
+# 紧急情况用 git commit --no-verify 显式跳过（会在 reflog 留痕）。
+# ============================================================
+set -uo pipefail
+
+RED='\033[0;31m'; YEL='\033[0;33m'; GRN='\033[0;32m'; NC='\033[0m'
+fail() { printf "${RED}✗ %s${NC}\n" "$*" >&2; exit 1; }
+warn() { printf "${YEL}⚠ %s${NC}\n" "$*" >&2; }
+ok()   { printf "${GRN}✓ %s${NC}\n" "$*" >&2; }
+
+# ---------- 1. 拿暂存区内容 ----------
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$STAGED" ] && { ok "无暂存内容，跳过"; exit 0; }
+
+STAGED_COUNT=$(printf '%s\n' "$STAGED" | wc -l)
+echo "── pre-commit 护栏：检查 ${STAGED_COUNT} 个暂存文件 ──" >&2
+
+# ---------- 2. 禁止构建产物 / 数据 / 缓存 ----------
+FORBIDDEN_PATTERNS=(
+  '^build/'
+  '^install/'
+  '^log/'
+  '\.bag$'
+  '\.mcap$'
+  '\.db$'
+  '\.db3$'
+  '\.pcd$'
+  '\.ply$'
+  '\.mineru_output/'
+  '\.vscode/'
+  '\.marscode/'
+  '__pycache__/'
+  '\.pyc$'
+  '\.o$'
+  '\.a$'
+  '\.so$'
+  '\.vc\.db$'
+)
+VIOLATIONS=""
+while IFS= read -r f; do
+  for pat in "${FORBIDDEN_PATTERNS[@]}"; do
+    if printf '%s' "$f" | grep -qE "$pat"; then
+      VIOLATIONS="${VIOLATIONS}  ${f}  (匹配 ${pat})\n"
+      break
+    fi
+  done
+done <<< "$STAGED"
+
+if [ -n "$VIOLATIONS" ]; then
+  printf "${RED}✗ 暂存区含不该提交的文件：${NC}\n" >&2
+  printf "%b" "$VIOLATIONS" >&2
+  echo "" >&2
+  echo "处理建议：" >&2
+  echo "  git restore --staged <file>     # 从暂存区移除（保留工作区）" >&2
+  echo "  或把规则补进 .gitignore" >&2
+  fail "提交被拒绝"
+fi
+
+# ---------- 3. 论文内容绝不能进这个仓库（远程是 public）----------
+PAPER_VIOLATIONS=$(printf '%s\n' "$STAGED" | grep -E '^paper_rewriting|^.*/paper_rewriting' || true)
+if [ -n "$PAPER_VIOLATIONS" ]; then
+  printf "${RED}✗ 论文内容不得进入本仓库（远程 fusionlynx-ros2 是 PUBLIC）${NC}\n" >&2
+  printf '%s\n' "$PAPER_VIOLATIONS" >&2
+  echo "" >&2
+  echo "论文有独立私有仓库：X-IOT-study/fusionlynx-thesis" >&2
+  echo "路径：ros2_ws/paper_rewriting_output/（已由 .gitignore 排除）" >&2
+  fail "提交被拒绝"
+fi
+ok "论文隔离检查通过"
+
+# ---------- 4. 大文件检查（单文件 > 10MB）----------
+BIG=""
+while IFS= read -r f; do
+  [ -f "$f" ] || continue
+  SZ=$(stat -c%s "$f" 2>/dev/null || echo 0)
+  if [ "$SZ" -gt 10485760 ]; then
+    BIG="${BIG}  $(numfmt --to=iec "$SZ")  ${f}\n"
+  fi
+done <<< "$STAGED"
+
+if [ -n "$BIG" ]; then
+  printf "${RED}✗ 暂存区含大文件（>10MB）：${NC}\n" >&2
+  printf "%b" "$BIG" >&2
+  echo "" >&2
+  echo "大文件请放外部存储或评估是否该用 git-lfs。" >&2
+  fail "提交被拒绝"
+fi
+ok "大文件检查通过"
+
+# ---------- 5. 子模块完整性 ----------
+SUBMODULE_VIOLATIONS=""
+while IFS= read -r f; do
+  case "$f" in
+    src/FAST_LIO/src/*|src/FAST_LIO/include/*|src/orbslam3_ros/src/*|\
+    src/livox_ros_driver2/src/*|src/ros2_astra_camera/src/*)
+      SUBMODULE_VIOLATIONS="${SUBMODULE_VIOLATIONS}  ${f}\n"
+      ;;
+  esac
+done <<< "$STAGED"
+
+if [ -n "$SUBMODULE_VIOLATIONS" ]; then
+  printf "${RED}✗ 根仓库不能直接提交外部子模块内部文件：${NC}\n" >&2
+  printf "%b" "$SUBMODULE_VIOLATIONS" >&2
+  echo "" >&2
+  echo "外部子模块只记录提交指针（见 AGENTS.md §2 / git_workflow.md §5）：" >&2
+  echo "  1. cd 进子模块，在子模块内提交" >&2
+  echo "  2. 回根仓库 git add <子模块路径> 记录新指针" >&2
+  fail "提交被拒绝"
+fi
+ok "子模块边界检查通过"
+
+# ---------- 6. MotionCore 子模块内的改动要先在子模块提交 ----------
+MC_DIRTY=$(git -C src/motioncore status --porcelain 2>/dev/null | head -5 || true)
+MC_STAGED_POINTER=$(printf '%s\n' "$STAGED" | grep -E '^src/motioncore$' || true)
+if [ -n "$MC_STAGED_POINTER" ] && [ -n "$MC_DIRTY" ]; then
+  warn "即将更新 src/motioncore 指针，但子模块内还有未提交改动："
+  printf '%s\n' "$MC_DIRTY" >&2
+  echo "  确认指针指向的是已提交版本吗？" >&2
+  echo "  按 git_workflow.md §5，子模块内改动必须先在自己仓库里提交。" >&2
+  fail "提交被拒绝（子模块有未提交改动却要更新指针）"
+fi
+ok "MotionCore 子模块检查通过"
+
+# ---------- 7. 提交信息格式 ----------
+# 注意：格式检查在 commit-msg 钩子里做（见 .githooks/commit-msg）。
+# pre-commit 阶段 COMMIT_EDITMSG 还没写入新 message，这里读不到。
+ok "提交信息格式：由 commit-msg 钩子检查"
+
+# ---------- 8. 空白错误 ----------
+if ! git diff --cached --check >/dev/null 2>&1; then
+  warn "发现行尾空白或冲突标记："
+  git diff --cached --check 2>&1 | head -10 >&2
+  echo "  修掉后再提交（或 git commit --no-verify 跳过）" >&2
+  fail "提交被拒绝"
+fi
+ok "空白检查通过"
+
+echo "" >&2
+ok "全部检查通过（${STAGED_COUNT} 个文件）"
+exit 0

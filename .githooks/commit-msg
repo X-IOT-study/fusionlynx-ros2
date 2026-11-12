@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# ============================================================
+# ros2_ws commit-msg 护栏 — Conventional Commits 格式强制
+# ------------------------------------------------------------
+# 为什么单独一个钩子：pre-commit 执行时 git 还没把 message 写进
+# COMMIT_EDITMSG，只有 commit-msg 阶段才拿得到（它把路径作为 $1 传入）。
+#
+# 规范来源：docs/development/git_workflow.md §4
+# ============================================================
+set -uo pipefail
+
+RED='\033[0;31m'; YEL='\033[0;33m'; GRN='\033[0;32m'; NC='\033[0m'
+fail() { printf "${RED}✗ %s${NC}\n" "$*" >&2; exit 1; }
+ok()   { printf "${GRN}✓ %s${NC}\n" "$*" >&2; }
+
+MSG_FILE="${1:-}"
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+  fail "commit-msg: 拿不到提交信息文件"
+fi
+
+# 取第一条非注释、非空行作为标题
+MSG=$(grep -v '^#' "$MSG_FILE" | grep -v '^[[:space:]]*$' | head -1)
+
+if [ -z "$MSG" ]; then
+  fail "提交信息为空"
+fi
+
+# 特殊提交放行
+if printf '%s' "$MSG" | grep -qE '^(Merge|Revert|fixup!|squash!)'; then
+  ok "提交信息：特殊提交（Merge/Revert/fixup），跳过格式检查"
+  exit 0
+fi
+
+# Conventional Commits: type(scope): 描述
+# 描述至少 4 个字符（中英文都算）
+PATTERN='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|experiment)(\([a-zA-Z0-9_./-]+\))?: .{4,}'
+
+if ! printf '%s' "$MSG" | grep -qE "$PATTERN"; then
+  printf "${RED}✗ 提交信息不符合规范${NC}\n" >&2
+  printf "    收到：%s\n\n" "$MSG" >&2
+  printf "    要求：<type>(<scope>): <描述>  描述至少 4 字符\n\n" >&2
+  printf "    类型：feat     新功能\n" >&2
+  printf "          fix      修复\n" >&2
+  printf "          docs     文档\n" >&2
+  printf "          test     测试\n" >&2
+  printf "          refactor 重构\n" >&2
+  printf "          perf     性能\n" >&2
+  printf "          chore    杂务\n" >&2
+  printf "          experiment 实验\n\n" >&2
+  printf "    示例：fix(state_fusion_backend): align recovered lio frame\n" >&2
+  printf "          docs(vault): record fusion experiment decision\n" >&2
+  printf "          experiment(S03): add slip scenario config\n\n" >&2
+  printf "    见 docs/development/git_workflow.md §4\n" >&2
+  fail "提交被拒绝"
+fi
+
+# 标题长度检查（软警告）
+LEN=${#MSG}
+if [ "$LEN" -gt 100 ]; then
+  printf "${YEL}⚠ 提交标题 ${LEN} 字符，建议 ≤100${NC}\n" >&2
+fi
+
+ok "提交信息格式正确"
+exit 0
